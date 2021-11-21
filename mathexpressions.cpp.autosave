@@ -17,16 +17,16 @@ void MathExpressions::CalculateMathExp(string & text)
 
 string MathExpressions::ApplicationFuncCalc(string text) {
 
-factorial.CalculateFactorial(text);
-trig.CalculateTrigFunc(text);
-if(trig.isError())
-    qDebug()<<"v trig error";
+    factorial.CalculateFactorial(text);//вычисляет фактириалы
+    trig.CalculateTrigFunc(text);//вычисляет тригонометрических функций
+    if(trig.isError())
+        qDebug()<<"v trig error";
 
-Proc.CalculatePercent(text);
-log.CalculatehLog(text);
+    Proc.CalculatePercent(text);//вычисляет процент
+    log.CalculatehLog(text);//вычисляет логарифм
 
-qsrt.CalculateSqrt(text);
-pow.CalculatePow(text);
+    qsrt.CalculateSqrt(text);//вычисляет корней
+    pow.CalculatePow(text);////вычисляет 
 
 
 double value=0;
