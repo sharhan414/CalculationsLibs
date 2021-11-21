@@ -26,14 +26,14 @@ string MathExpressions::ApplicationFuncCalc(string text) {
     log.CalculatehLog(text);//вычисляет логарифм
 
     qsrt.CalculateSqrt(text);//вычисляет корней
-    pow.CalculatePow(text);////вычисляет 
+    pow.CalculatePow(text);//вычисляет спепеней
 
 
-double value=0;
-arif.arif_detstvie(value,text);
+    double value=0;
+    arif.arif_detstvie(value,text);
 
 
-return QString::number(value).toStdString();
+    return QString::number(value).toStdString();
 }
 
 /////////////////////////////////////
