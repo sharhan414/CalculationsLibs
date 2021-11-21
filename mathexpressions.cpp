@@ -1,26 +1,21 @@
-#include "resh.h"
-
-#include <QString>
-#include "arifdeyst.h"
-#include <string>
+#include "mathexpressions.h"
 #include <iterator>
 #include<QDebug>
-#include "reshtrigfunc.h"
-#include <QtAlgorithms>
-using namespace  std;
+using namespace std;
+MathExpressions::MathExpressions()
+{
 
-void Resh::resh(string & text)
+}
+
+void MathExpressions::CalculateMathExp(string & text)
 {
     string::iterator b=text.begin(),e=text.end(),e2=text.end();
     OpeningBrackets(text,b,e,e2);
 }
 
-Resh::Resh()
-{
 
-}
 
-string Resh::QtFunck(string text) {
+string MathExpressions::ApplicationFuncCalc(string text) {
 
 factorial.CalculateFactorial(text);
 trig.CalculateTrigFunc(text);
@@ -42,15 +37,15 @@ return QString::number(value).toStdString();
 }
 
 /////////////////////////////////////
-/// \brief Resh::sleep
+/// \brief MathExpressions::sleep
 /// \param text
 /// \param begin
 /// \param end
 /// \param verhEnd
 /////////////////////////////////////////////////////
-void Resh::OpeningBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd) {
+void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd) {
 //функция для раскрытия скобок
-    if(!resheniya2(text, begin, end, verhEnd ))
+    if(!getTextFromBrackets(text, begin, end, verhEnd ))
         return;
     int zak = 0, ot = 0;
     auto c = text.end();
@@ -74,7 +69,7 @@ void Resh::OpeningBrackets(string& text, string::iterator& begin, string::iterat
             int64_t ras2 = text.size();     //
             int64_t ras =  ras1-ras2;
             verhEnd -= ras;
-            if (!resheniya2(text, begin,end, verhEnd))
+            if (!getTextFromBrackets(text, begin,end, verhEnd))
                 return;		//закрываем нашу функцию
             c = text.end();
             zak = 0;
@@ -83,14 +78,14 @@ void Resh::OpeningBrackets(string& text, string::iterator& begin, string::iterat
         ++i;//увеличиваем счетшик на 1
     }
 }
-bool  Resh::resheniya2(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd) {
+bool  MathExpressions::getTextFromBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd) {
 
 
     string textskobky(begin, end);//вычисляется текст нашей скобки
     int64_t sizeIshodText = int64_t(text.size());
 
     if (find(textskobky.begin(), textskobky.end(), '(') == textskobky.end() && !textskobky.empty()) {//если в нашем тексте нету скобок то
-        string otvet = QtFunck(textskobky);//вычисляем ответ арифметических действий в нашем тексте и ответ сохраняем в переменной "otvet"
+        string otvet = ApplicationFuncCalc(textskobky);//вычисляем ответ арифметических действий в нашем тексте и ответ сохраняем в переменной "otvet"
 
         if (begin == text.begin() && end==text.end()) {//
             text.clear();
@@ -125,7 +120,7 @@ bool  Resh::resheniya2(string& text, string::iterator& begin, string::iterator& 
 
 
 
-void Resh::ReplacingSigns(QString & text)//заменят знаки
+void MathExpressions::ReplacingSigns(QString & text)//заменят знаки
 {
 qDebug()<<"Zamena do text="<<text;
 
@@ -206,4 +201,3 @@ text=BeginText+Func+EndTExt;
 
 
 }
-

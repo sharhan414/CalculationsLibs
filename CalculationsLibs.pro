@@ -6,9 +6,9 @@ SOURCES += \
         arifdeyst.cpp \
         factorial.cpp \
         log.cpp \
+        mathexpressions.cpp \
         pow.cpp \
         procents.cpp \
-        resh.cpp \
         resheniy.cpp \
         reshtrigfunc.cpp \
         sqrt.cpp\
@@ -18,9 +18,9 @@ HEADERS += \
     arifdeyst.h \
     factorial.h \
     log.h \
+    mathexpressions.h \
     pow.h \
     procents.h \
-    resh.h \
     resheniy.h \
     reshtrigfunc.h \
     sqrt.h

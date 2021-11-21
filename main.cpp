@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-string s="17+3*(6-2)+sin(30)";
+string s="17+3*(6-2)+sin(30)+cos(60)";
 
 
  Resh resh;
