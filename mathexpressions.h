@@ -26,7 +26,7 @@ private:
     void OpeningBrackets(std::string& text, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd);
     std::string ApplicationFuncCalc(std::string text);
     bool  getTextFromBrackets(std::string& text, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd);
-
+    static void InsertNewSingExp(std::u16string& text,std::u16string Sign,std::u16string newSign);
 
 private:
     ReshTrigFunc trig;
@@ -36,6 +36,7 @@ private:
     Factorial factorial;
     Sqrt qsrt;
     Pow pow;
+
 };
 
 #endif // MATHEXPRESSIONS_H

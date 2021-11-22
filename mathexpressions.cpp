@@ -1,5 +1,6 @@
 #include "mathexpressions.h"
 #include <iterator>
+#include <algorithm>
 #include<QDebug>
 using namespace std;
 MathExpressions::MathExpressions()
@@ -15,25 +16,21 @@ void MathExpressions::CalculateMathExp(string & text)
 
 
 
-string MathExpressions::ApplicationFuncCalc(string text) {
+string MathExpressions::ApplicationFuncCalc(string text)
+{
 
-factorial.CalculateFactorial(text);
-trig.CalculateTrigFunc(text);
-if(trig.isError())
-    qDebug()<<"v trig error";
+    factorial.CalculateFactorial(text);//вычисляет фактириалы      
+    trig.CalculateTrigFunc(text);//вычисляет тригонометрических функций      
+    if(trig.isError())
+        qDebug()<<"v trig error";
 
-Proc.CalculatePercent(text);
-log.CalculatehLog(text);
-
-qsrt.CalculateSqrt(text);
-pow.CalculatePow(text);
-
-
-double value=0;
-arif.arif_detstvie(value,text);
-
-
-return QString::number(value).toStdString();
+    Proc.CalculatePercent(text);//вычисляет процент  
+    log.CalculatehLog(text);//вычисляет логарифм   
+    qsrt.CalculateSqrt(text);//вычисляет корней   
+    pow.CalculatePow(text);//вычисляет спепеней   
+    double value=0;
+    arif.arif_detstvie(value,text);
+    return QString::number(value).toStdString();
 }
 
 /////////////////////////////////////
@@ -43,15 +40,18 @@ return QString::number(value).toStdString();
 /// \param end
 /// \param verhEnd
 /////////////////////////////////////////////////////
-void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd) {
+void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
+{
 //функция для раскрытия скобок
+
     if(!getTextFromBrackets(text, begin, end, verhEnd ))
         return;
     int zak = 0, ot = 0;
     auto c = text.end();
     auto i = begin;
 
-    while (i != end) {
+    while (i != end)
+    {
 
         if (*i == '(')
         {           //подсчитывает количество открытых скобок
@@ -118,99 +118,33 @@ bool  MathExpressions::getTextFromBrackets(string& text, string::iterator& begin
                 verhEnd = verhEnd - raznica;
          }
              return false;
-        }
+    }
         else
-            return true;
+        return true;
+}
+
+void MathExpressions::InsertNewSingExp(u16string &text,u16string Sign, u16string newSign)
+{
+    auto iter=text.begin();
+    while(iter!=text.end())
+    {
+
+        iter=search(iter,text.end(),Sign.begin(),Sign.end());
+        if(iter==text.end())
+        {
+            break;
+        }
+        iter=text.erase(iter,iter+Sign.size());
+        iter=text.insert(iter,newSign.begin(),newSign.end());
+    }
 }
 
 void MathExpressions::ReplacingSigns(QString & text)//заменят знаки
 {
-qDebug()<<"Zamena do text="<<text;
-
-int i=0;
-    while(true)
-    {
-    QString BeginText,EndTExt;
-    QString NewText="";
-    QString Func="nsqrt";
-        if(text[i]=="/"){
-
-            for(int b=0;b!=i;++b)
-            {
-                BeginText.push_back(text[b]);
-            }
-            for(int e=i+2;e!=text.size();++e)
-            {
-                EndTExt.push_back(text[e]);
-            }
-            text=BeginText+Func+EndTExt;
-        }
-++i;
-    if(i==text.size())
-        break;
-
-    }
-
-    int j=0;
-    while(true)
-    {
-    QString BeginText,EndTExt;
-    QString NewText="";
-    QString Func="sqrt";
-        if(text[j]=="√")
-        {
-
-            for(int b=0;b!=j;++b)
-            {
-                BeginText.push_back(text[b]);
-            }
-            for(int e=j+1;e!=text.size();++e)
-            {
-                EndTExt.push_back(text[e]);
-            }
-            text=BeginText+Func+EndTExt;
-        }
-        ++j;
-        if(j==text.size())
-            break;
-    }
-
-    QString::size_type t=0;
-    while(true)
-    {
-        if(text[t]=="×")
-            text[t]='*';
-        else if(text[t]=="÷")
-            text[t]='/';
-        else if(text[t]=="e"){
-
-            QString BeginText="",EndText="";
-            for(QString::size_type j=0;j!=t;++j)
-            {
-                BeginText.push_back(text[j]);
-            }
-            for(QString::size_type j=t+1;j!=text.size();++j)
-            {
-                EndText.push_back(text[j]);
-            }
-                text=BeginText+"2.7"+EndText;
-        }
-        else if(text[t]=="π")
-        {
-            QString BeginText="",EndText="";
-            for(QString::size_type j=0;j!=t;++j)
-            {
-                BeginText.push_back(text[j]);
-            }
-            for(QString::size_type j=t+1;j!=text.size();++j)
-            {
-                EndText.push_back(text[j]);
-            }
-            text=BeginText+"3.14"+EndText;
-         }
-        ++t;
-
-        if(t==text.size())
-            break;
-    }
+auto str=text.toStdU16String();
+    InsertNewSingExp(str,u"/√",u"nsqrt");
+    InsertNewSingExp(str,u"×",u"*");
+    InsertNewSingExp(str,u"÷",u"/");
+    InsertNewSingExp(str,u"√",u"sqrt");
+    text=text.fromStdU16String(str);
 }

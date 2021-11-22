@@ -22,7 +22,7 @@ std::string Resheniy::SearchBeginText(string& text,string::iterator& it,string::
     auto k = it;
     do {////////begin text
         --k;
-        if (find(arif.begin(), arif.end(), *k) == arif.end()) {
+        if (find(UserChars.begin(), UserChars.end(), *k) == UserChars.end()) {
             string Textproc(k + 1, it);
             itBegin = k + 1;
             return Textproc;
@@ -42,7 +42,7 @@ string Resheniy::SearchEndText(string & text,string funk,string::iterator &it, s
 {
 
      for (auto i = it + int(funk.size()); i != text.end(); ++i) {
-         if (find(arif.begin(), arif.end(), *i) == arif.end()) {
+         if (find(UserChars.begin(), UserChars.end(), *i) == UserChars.end()) {
              string Textproc(it + int64_t(funk.size()), i);
              itEnd = i;
              return Textproc;

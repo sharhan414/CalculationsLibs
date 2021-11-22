@@ -20,7 +20,7 @@ protected:
     std::string SearchBeginText(std::string&,std::string::iterator&,std::string::iterator&) ;
     std::string SearchEndText(std::string&,std::string,std::string::iterator&,std::string::iterator&) ;
     bool error=true;
-    const std::string arif = "0123456789.";
+    const std::string UserChars = "0123456789.";
 };
 
 #endif // RESHENIY_H

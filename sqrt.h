@@ -9,7 +9,7 @@ public:
     void CalculateSqrt(std::string&);
     void CalculateNSqtn(std::string&);
     void Calculate2Sqrt(std::string&);
-    std::string resheniya(std::string&);
+    std::string getMathSqrtAnswer(std::string&);
     std::string resheniya(std::string& ,std::string&);
 
 

@@ -37,17 +37,18 @@ void Sqrt::Calculate2Sqrt(string& text)
     while (it != text.end())
     {
         auto endIt = it;
-        string funkZnachenie = SearchEndText(text,Sqrt,it,endIt);
-        string otvet = resheniya(Sqrt, funkZnachenie);
+        string strValue = SearchEndText(text,Sqrt,it,endIt);
+        string Answer = getMathSqrtAnswer(strValue);
+        it=text.erase(it,it+Sqrt.size()+strValue.size());
+        it=text.insert(it,Answer.begin(),Answer.end());
         it = search(it, text.end(), Sqrt.begin(), Sqrt.end());
     }
 }
-string Sqrt::resheniya(string& text)
+string Sqrt::getMathSqrtAnswer(string& strValue)
 {
-
-    double DText=atoi(text.c_str());
-    double DOtvet=sqrt(DText);
-    return to_stdString(DOtvet);
+    double Value=stdString_toDouble(strValue);
+    double AnswerVal=sqrt(Value);
+    return to_stdString(AnswerVal);
 }
 
 string Sqrt::resheniya(string& behinText, string& endText)

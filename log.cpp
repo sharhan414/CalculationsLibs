@@ -7,17 +7,20 @@ Log::Log()
 
 }
 
-void Log::CalculatehLog(string& text){
+void Log::CalculatehLog(string& text)
+{
 
     vector<string> v{"ln","log"};
 
-    for (vector<string>::size_type j = 0; j != v.size(); ++j) {
+    for (vector<string>::size_type j = 0; j != v.size(); ++j)
+    {
         auto  itEnd = text.end();
         auto it =text.begin();
 
-    while ((it= search(it, text.end(), v[j].begin(), v[j].end()) )!= text.end()) {
-        string endText=SearchEndText(text,v[j],it,itEnd);
-        string otvet = resheniya(endText, v[j]);
+        while ((it= search(it, text.end(), v[j].begin(), v[j].end()) )!= text.end())
+        {
+            string endText=SearchEndText(text,v[j],it,itEnd);
+            string otvet = resheniya(endText, v[j]);
             if(!error)
                 return;
             text.erase(it, itEnd);
@@ -40,5 +43,5 @@ string Log::resheniya(string& Value,string& Func){
         y=log(value);
         }
 
-return to_stdString(y);
+    return to_stdString(y);
 }
