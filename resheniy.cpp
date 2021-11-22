@@ -58,3 +58,21 @@ string Resheniy::SearchEndText(string & text,string funk,string::iterator &it, s
 
 }
 
+
+template<class Str>
+void Resheniy::InsertNewSingExp(Str &text, Str Sign,Str newSign)
+{
+
+    auto iter=text.begin();
+    while(iter!=text.end())
+    {
+
+        iter=search(iter,text.end(),Sign.begin(),Sign.end());
+        if(iter==text.end())
+        {
+            break;
+        }
+        iter=text.erase(iter,iter+Sign.size());
+        iter=text.insert(iter,newSign.begin(),newSign.end());
+    }
+}

@@ -1,5 +1,5 @@
 #include "sqrt.h"
-#include <vector>
+
 using namespace std;
 Sqrt::Sqrt()
 {
@@ -39,9 +39,10 @@ void Sqrt::Calculate2Sqrt(string& text)
         auto endIt = it;
         string strValue = SearchEndText(text,Sqrt,it,endIt);
         string Answer = getMathSqrtAnswer(strValue);
-        it=text.erase(it,it+Sqrt.size()+strValue.size());
-        it=text.insert(it,Answer.begin(),Answer.end());
-        it = search(it, text.end(), Sqrt.begin(), Sqrt.end());
+       // it=text.erase(it,it+Sqrt.size()+strValue.size());
+       // it=text.insert(it,Answer.begin(),Answer.end());
+        InsertNewSingExp(text,string(Sqrt+strValue),Answer);
+        it = search(text.begin(), text.end(), Sqrt.begin(), Sqrt.end());
     }
 }
 string Sqrt::getMathSqrtAnswer(string& strValue)

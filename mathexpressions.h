@@ -2,9 +2,6 @@
 #define MATHEXPRESSIONS_H
 
 #include <string>
-#include <vector>
-#include <iostream>
-#include <algorithm>
 #include <iterator>
 #include "reshtrigfunc.h"
 #include "arifdeyst.h"
