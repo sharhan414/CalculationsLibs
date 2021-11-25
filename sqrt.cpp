@@ -39,9 +39,8 @@ void Sqrt::Calculate2Sqrt(string& text)
         auto endIt = it;
         string strValue = SearchEndText(text,Sqrt,it,endIt);
         string Answer = getMathSqrtAnswer(strValue);
-       // it=text.erase(it,it+Sqrt.size()+strValue.size());
-       // it=text.insert(it,Answer.begin(),Answer.end());
-        InsertNewSingExp(text,string(Sqrt+strValue),Answer);
+        it=text.erase(it,it+Sqrt.size()+strValue.size());
+        it=text.insert(it,Answer.begin(),Answer.end());
         it = search(text.begin(), text.end(), Sqrt.begin(), Sqrt.end());
     }
 }
@@ -60,7 +59,6 @@ string Sqrt::resheniya(string& behinText, string& endText)
         error=false;
         return string();
     }
-    string otvet;
 
     double DBeginText=stdString_toDouble(behinText);
     double DEndText=stdString_toDouble(endText);

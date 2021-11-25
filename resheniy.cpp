@@ -13,8 +13,8 @@ string Resheniy::to_stdString(double values)
 
 double Resheniy::stdString_toDouble(string strValues)
 {
-  QString str=QString::fromStdString(strValues);
-  return str.toDouble();
+    QString str=QString::fromStdString(strValues);
+    return str.toDouble();
 }
 
 std::string Resheniy::SearchBeginText(string& text,string::iterator& it,string::iterator& itBegin)

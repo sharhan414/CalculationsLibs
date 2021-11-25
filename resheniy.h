@@ -11,13 +11,15 @@ class Resheniy
 {
 public:
     Resheniy();
-    bool isError(){
-    return !error;
-       }
+    bool isError()
+    {
+        return !error;
+    }
     static std::string to_stdString(double);
     static double stdString_toDouble(std::string strValues);
     template<class Str>
-    static void InsertNewSingExp(Str &text,Str Sign, Str newSign);
+    void InsertNewSingExp(Str &text,Str Sign, Str newSign);
+
 protected:
     std::string SearchBeginText(std::string&,std::string::iterator&,std::string::iterator&) ;
     std::string SearchEndText(std::string&,std::string,std::string::iterator&,std::string::iterator&) ;
