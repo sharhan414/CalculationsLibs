@@ -7,7 +7,8 @@ Pow::Pow()
 
 }
 
-string Pow::resheniya(string& behinText,string& endText){
+string Pow::resheniya(string& behinText,string& endText)
+{
 
     double DBeginText=stdString_toDouble(behinText);//приобразем behinText в число
     double DEndText= stdString_toDouble(endText);//приобразем endText в число
@@ -20,13 +21,15 @@ string Pow::resheniya(string& behinText,string& endText){
     return to_stdString(DOtvet);
 }
 
-void Pow::CalculatePow(string& text){
+void Pow::CalculatePow(string& text)
+{
     string pow = "^";
 
     auto itBegin = text.end(), itEnd = text.end();
     auto it = text.begin();
 
-    while ((it = search(it, text.end(), pow.begin(), pow.end())) != text.end()) {
+    while ((it = search(it, text.end(), pow.begin(), pow.end())) != text.end())
+    {
         string beginText, endText;
 
         beginText=SearchBeginText(text,it,itBegin); // search begin text

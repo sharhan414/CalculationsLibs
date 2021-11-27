@@ -5,7 +5,8 @@ Procents::Procents()
 {
 
 }
-string Procents::resheniya2(string& Value) {
+string Procents::resheniya2(string& Value)
+{
 
     double x=stdString_toDouble(Value) ;//  text.toDouble(&error);
     x=Procent(x);
@@ -31,37 +32,45 @@ double Procents::Procent(double x)
     return x/100;
 }
 
-string Procents::resheniya(string& beginText, string& endText, string& Func) {
+string Procents::resheniya(string& beginText, string& endText, string& Func)
+{
 
     double x=stdString_toDouble(beginText) ;//BeginZnach.toDouble(&error);
     double y=stdString_toDouble(endText) ;
 
-    if(!error){
+    if(!error)
+    {
         return string();
     }
     double otvet_d{0};
-    if(Func=="+%"){
+    if(Func=="+%")
+    {
         otvet_d= PlusProcentorv(x,y);
             }
-    if(Func == string("-%")){
+    if(Func == string("-%"))
+    {
         otvet_d= MinusProcentorv(x,y);
     }
 
     return  to_stdString(otvet_d);
 }
 
-void Procents::CalculatePercent(string& text) {
+void Procents::CalculatePercent(string& text)
+{
 
     vector<string> v{"+%","-%","%"};
-    for (vector<string>::size_type j = 0; j != v.size(); ++j) {
+    for (vector<string>::size_type j = 0; j != v.size(); ++j)
+    {
         auto itBegin = text.end(), itEnd = text.end();
         auto it = text.begin();
 
-    while ((it = search(it, text.end(), v[j].begin(), v[j].end())) != text.end()) {
+    while ((it = search(it, text.end(), v[j].begin(), v[j].end())) != text.end())
+    {
         string beginText, endText;
 
         beginText=SearchBeginText(text,it,itBegin); //begin text
-        if(v[j]=="%"){
+        if(v[j]=="%")
+        {
             string otvet = resheniya2(beginText);
             text.erase(itBegin, it+1);
             it = text.insert(itBegin, otvet.begin(), otvet.end());

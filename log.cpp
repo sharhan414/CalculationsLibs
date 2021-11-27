@@ -29,19 +29,24 @@ void Log::CalculatehLog(string& text)
     }
 }
 
-string Log::resheniya(string& Value,string& Func){
+string Log::resheniya(string& Value,string& Func)
+{
 
     int value= atoi(Value.c_str());
     if(!error)
+    {
         return string();
+    }
 
     double y{0};
-    if(Func=="log"){
+    if(Func=="log")
+    {
         y=log10(value)   ;
-        }
-    if(Func=="ln"){
+    }
+    if(Func=="ln")
+    {
         y=log(value);
-        }
+    }
 
     return to_stdString(y);
 }

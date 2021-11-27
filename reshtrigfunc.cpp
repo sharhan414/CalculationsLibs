@@ -17,13 +17,16 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
         return string();
 
     double ugol=UgolToradians(DoubleVal);
-    if (Funk == "sin") {
+    if (Funk == "sin")
+    {
         Ancwer=sin(ugol);
     }
-    else if (Funk == "cos") {
+    else if (Funk == "cos")
+    {
         Ancwer=cos(ugol);
     }
-    else if (Funk == "tag") {
+    else if (Funk == "tag")
+    {
         Ancwer=tan(ugol);
     }
 
@@ -42,7 +45,7 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
         {
             error=false;
             return string();
-         }
+        }
         Ancwer=acos(DoubleVal);
     }
     else if (Funk == "atag")
@@ -53,7 +56,6 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
     return to_stdString(Ancwer);
 }
 
-
 double ReshTrigFunc::UgolToradians(double & x)
 {
     return x/(180/Pi);
@@ -61,7 +63,6 @@ double ReshTrigFunc::UgolToradians(double & x)
 
 void ReshTrigFunc::trigonometr(string& text)
 {
-
     vector<string> v{"asin","acos","atag","sin","cos","tag"};
 
     for (vector<string>::size_type j = 0; j != v.size(); ++j)
@@ -76,11 +77,12 @@ void ReshTrigFunc::trigonometr(string& text)
             string otvet = resheniya(v[j], EndText);
 
             if(!error)
+            {
                 return ;
+            }
 
             text.erase(it, endIt);
             it=text.insert(it, otvet.begin(), otvet.end());
-
          }
      }
 }

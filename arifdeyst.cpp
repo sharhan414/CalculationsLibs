@@ -103,9 +103,7 @@ void ArifDeyst::getArifSignsForExp(string &text,vector<char>& ArithmeticSigns)
                 text[i]='|';
             }
         }
-
     }
-
 }
 
 void ArifDeyst::getValuesForExp(string &text,vector<string>& ValuesForExp)
@@ -116,8 +114,6 @@ void ArifDeyst::getValuesForExp(string &text,vector<string>& ValuesForExp)
         string val(text.begin(),iter);
         ValuesForExp.push_back(val);
         text.erase(text.begin(),iter+1);
-
-
     }
 }
 
@@ -134,12 +130,10 @@ void ArifDeyst::getDatesForExp(string& text,vector<string>& ValuesForExp,vector<
 ///////////
 void ArifDeyst::arif_detstvie(double& Answer,string text)
 {
-
     vector<char> ArithmeticSigns;
     vector<string> ValuesForExp;
     getDatesForExp(text,ValuesForExp,ArithmeticSigns);
     vector<double> Otvetes;
-
 
     for(uint64_t i=0;i!=ValuesForExp.size();++i)
     {
@@ -148,5 +142,4 @@ void ArifDeyst::arif_detstvie(double& Answer,string text)
 
     ReshArifDeystUmnjAndDeln(Otvetes,ArithmeticSigns);//решаеть ариф.действия умножение и деление
     Answer=ReshArifDeystPlusAndMinus(Otvetes,ArithmeticSigns);//решаеть ариф.действия сложение и вычитание
-
 }

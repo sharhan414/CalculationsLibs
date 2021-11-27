@@ -53,7 +53,6 @@ string Sqrt::getMathSqrtAnswer(string& strValue)
 
 string Sqrt::resheniya(string& behinText, string& endText)
 {
-
     if(behinText.empty())
     {
         error=false;
