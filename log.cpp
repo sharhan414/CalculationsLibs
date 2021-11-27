@@ -21,7 +21,7 @@ void Log::CalculatehLog(string& text)
         {
             string endText=SearchEndText(text,v[j],it,itEnd);
             string otvet = resheniya(endText, v[j]);
-            if(!error)
+            if(Error)
                 return;
             text.erase(it, itEnd);
             it = text.insert(it, otvet.begin(), otvet.end());
@@ -32,8 +32,9 @@ void Log::CalculatehLog(string& text)
 string Log::resheniya(string& Value,string& Func)
 {
 
-    int value= atoi(Value.c_str());
-    if(!error)
+
+   int value=int(stdString_toDouble(Value.c_str()));
+    if(Error)
     {
         return string();
     }

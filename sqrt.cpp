@@ -55,7 +55,7 @@ string Sqrt::resheniya(string& behinText, string& endText)
 {
     if(behinText.empty())
     {
-        error=false;
+        Error=true;
         return string();
     }
 

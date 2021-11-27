@@ -38,7 +38,7 @@ string Procents::resheniya(string& beginText, string& endText, string& Func)
     double x=stdString_toDouble(beginText) ;//BeginZnach.toDouble(&error);
     double y=stdString_toDouble(endText) ;
 
-    if(!error)
+    if(Error)
     {
         return string();
     }

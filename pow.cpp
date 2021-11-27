@@ -13,7 +13,7 @@ string Pow::resheniya(string& behinText,string& endText)
     double DBeginText=stdString_toDouble(behinText);//приобразем behinText в число
     double DEndText= stdString_toDouble(endText);//приобразем endText в число
 
-    if(!error)
+    if(Error)
         return string();
 
     double DOtvet=pow(DBeginText,DEndText);

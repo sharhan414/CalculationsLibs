@@ -13,7 +13,7 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
 {   
     double DoubleVal=stdString_toDouble(Value),Ancwer=0;
 
-    if(!error)
+    if(Error)
         return string();
 
     double ugol=UgolToradians(DoubleVal);
@@ -34,7 +34,7 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
     {
         if(DoubleVal>1 || DoubleVal<-1)
         {
-            error=false;
+            Error=true;
             return string();
         }
         Ancwer=asin(DoubleVal);
@@ -43,7 +43,7 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
     {
         if(DoubleVal>1 || DoubleVal<-1)
         {
-            error=false;
+            Error=true;
             return string();
         }
         Ancwer=acos(DoubleVal);
@@ -76,7 +76,7 @@ void ReshTrigFunc::trigonometr(string& text)
             string EndText = SearchEndText(text,v[j],it,endIt);
             string otvet = resheniya(v[j], EndText);
 
-            if(!error)
+            if(Error)
             {
                 return ;
             }

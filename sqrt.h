@@ -18,7 +18,7 @@ public:
     {
         if( y == 0.0 || (x<0 && abs(y)-abs(int(y))==0 && abs(int(y))%2==0))
         {
-            error=false;
+            Error=true;
             return 0;
         }
         double otvet = pow(x, 1/y);
@@ -28,7 +28,7 @@ public:
     {
         if(x<0)
         {
-            error=false;
+            Error=true;
             return 0;
         }
         return pow(x, 0.5);

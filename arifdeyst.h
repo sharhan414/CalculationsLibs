@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <string>
-
-class ArifDeyst
+#include "resheniy.h"
+class ArifDeyst:public Resheniy
 {
 public:
     ArifDeyst();

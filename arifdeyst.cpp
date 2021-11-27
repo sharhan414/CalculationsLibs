@@ -137,7 +137,7 @@ void ArifDeyst::arif_detstvie(double& Answer,string text)
 
     for(uint64_t i=0;i!=ValuesForExp.size();++i)
     {
-        Answers.push_back(Resheniy::stdString_toDouble(ValuesForExp[i]));
+        Answers.push_back(stdString_toDouble(ValuesForExp[i]));
     }
 
     CalcArithExpMultAndDiv(Answers,ArithmeticSigns);//решаеть ариф.действия умножение и деление

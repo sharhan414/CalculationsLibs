@@ -3,18 +3,19 @@
 using namespace std;
 Resheniy::Resheniy()
 {
-
+Error=false;
 }
 
 string Resheniy::to_stdString(double values)
 {
+
     return QString::number(values).toStdString();
 }
 
 double Resheniy::stdString_toDouble(string strValues)
 {
-    QString str=QString::fromStdString(strValues);
-    return str.toDouble();
+    QString QStrVal=QString::fromStdString(strValues);
+    return QStrVal.toDouble(&Error);
 }
 
 std::string Resheniy::SearchBeginText(string& text,string::iterator& it,string::iterator& itBegin)
