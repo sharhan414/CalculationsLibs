@@ -14,8 +14,6 @@ void MathExpressions::CalculateMathExp(string & text)
     OpeningBrackets(text,b,e,e2);
 }
 
-
-
 string MathExpressions::ApplicationFuncCalc(string text)
 {
 
@@ -46,7 +44,7 @@ void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, str
 
     if(!getTextFromBrackets(text, begin, end, verhEnd ))
         return;
-    int zak = 0, ot = 0;
+    int bracket_close = 0, bracket_open = 0;//переменные для подсчёта открых и закрытых скобок
     auto c = text.end();
     auto i = begin;
 
@@ -55,17 +53,16 @@ void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, str
 
         if (*i == '(')
         {           //подсчитывает количество открытых скобок
-            ++ot;
+            ++bracket_open;
             if (c == text.end())
                 c = i;                  //сохраняет позицию первой открытой скобки
         }
         else if (*i == ')')
         {      //подсчитывает количество закрытых скобок
-            ++zak;
+            ++bracket_close;
         }
-        if (zak != 0 && ot == zak)
+        if (bracket_close != 0 && bracket_open == bracket_close)
         {        //если количество окрытых и закрытых скобок равно, то
-            string n(c + 1, c + (i - c));  //сохраняет текст скобки
             int64_t ras1 = int64_t(text.size());
             OpeningBrackets(text, ++c, i,end);
             int64_t ras2 = int64_t(text.size());     //
@@ -74,15 +71,14 @@ void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, str
             if (!getTextFromBrackets(text, begin,end, verhEnd))
                 return;		//закрываем нашу функцию
             c = text.end();
-            zak = 0;
-            ot = 0;
+            bracket_close = 0;
+            bracket_open = 0;
         }
         ++i;//увеличиваем счетшик на 1
     }
 }
 bool  MathExpressions::getTextFromBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
 {
-
 
     string textskobky(begin, end);//вычисляется текст нашей скобки
     int64_t sizeIshodText = int64_t(text.size());
@@ -141,7 +137,7 @@ void MathExpressions::InsertNewSingExp(u16string &text,u16string Sign, u16string
 
 void MathExpressions::ReplacingSigns(QString & text)//заменят знаки
 {
-auto str=text.toStdU16String();
+    auto str=text.toStdU16String();
     InsertNewSingExp(str,u"/√",u"nsqrt");
     InsertNewSingExp(str,u"×",u"*");
     InsertNewSingExp(str,u"÷",u"/");

@@ -7,32 +7,7 @@ ArifDeyst::ArifDeyst()
 {
 
 }
-void ArifDeyst::raspredDeystAndValues(vector<string>& ValuesArifDeyst,vector<char>& ArifDeyst,string& TextAfidDeyst)
-{
-    string m = "+-*/",s="";
-    int k = 0;
-    for (size_t i = 0; i != TextAfidDeyst.size(); ++i)
-    {
-        if (find(m.begin(), m.end(), TextAfidDeyst[i]) != m.end() && i!=0 )
-        {
-            ArifDeyst.push_back(TextAfidDeyst[i]);
 
-            for (size_t j = k; j != i; ++j)
-            {
-                s += TextAfidDeyst[j];
-                if (i < TextAfidDeyst.size() - 1)
-                    k = i + 1;
-            }
-
-            ValuesArifDeyst.push_back(s);
-            s = "";
-        }
-    }
-    for (size_t j = k; j != TextAfidDeyst.size(); ++j)
-        s += TextAfidDeyst[j];
-
-    ValuesArifDeyst.push_back(s);
-}
 
 void ArifDeyst::ReshArifDeystUmnjAndDeln(vector<double>& v, vector<char>& w)
 {
@@ -159,29 +134,13 @@ void ArifDeyst::getDatesForExp(string& text,vector<string>& ValuesForExp,vector<
 ///////////
 void ArifDeyst::arif_detstvie(double& Answer,string text)
 {
-/*
-    vector<string> ValuesArifDeyst; //будет содержать числа по их порядку в TextAfidDeyst без ариф. действий
-    vector<char> ArifDeyst;//будет содержать ариф. действия по их порядку в TextAfidDeyst
-    vector<double> Otvetes;
-    raspredDeystAndValues(ValuesArifDeyst,ArifDeyst,TextAfidDeyst); //
-
-    for(uint64_t i=0;i!=ValuesArifDeyst.size();++i)
-    {
-        Otvetes.push_back(Resheniy::stdString_toDouble(ValuesArifDeyst[i]));
-    }
-    ReshArifDeystUmnjAndDeln(Otvetes,ArifDeyst);//решаеть ариф.действия умножение и деление
-    Answer=ReshArifDeystPlusAndMinus(Otvetes,ArifDeyst);//решаеть ариф.действия сложение и вычитание
-
-*/
-
 
     vector<char> ArithmeticSigns;
     vector<string> ValuesForExp;
     getDatesForExp(text,ValuesForExp,ArithmeticSigns);
     vector<double> Otvetes;
 
-   // raspredDeystAndValues(ValuesForExp,ArithmeticSigns,text); //
-
+ 
     for(uint64_t i=0;i!=ValuesForExp.size();++i)
     {
         Otvetes.push_back(Resheniy::stdString_toDouble(ValuesForExp[i]));
