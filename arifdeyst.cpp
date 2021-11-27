@@ -8,33 +8,33 @@ ArifDeyst::ArifDeyst()
 
 }
 
-
-void ArifDeyst::ReshArifDeystUmnjAndDeln(vector<double>& v, vector<char>& w)
+// функция для решения * / действий
+void ArifDeyst::CalcArithExpMultAndDiv(vector<double>& Values, vector<char>& ArithmeticSigns)
 {
     string m = "*/";
-    int a = 0,k=0;
-    for (size_t i = 0; i != w.size(); ++i)
-        if (w[i] == m.back() || w[i] == m.front())
-            ++k;
+    int NumActions = 0,ComplActions=0;//переменные для хранения кол.действий в выраж. и пер. подсчёта выпол-х действий
+    for (size_t i = 0; i != ArithmeticSigns.size(); ++i)
+        if (ArithmeticSigns[i] == m.back() || ArithmeticSigns[i] == m.front())
+            ++ComplActions;
 
-    while(a<k)
+    while(NumActions<ComplActions)
     {
-        for (size_t i = 0; i != w.size(); ++i)
+        for (size_t i = 0; i != ArithmeticSigns.size(); ++i)
         {
-            if (w[i] == m.front())
+            if (ArithmeticSigns[i] == m.front())
             {
-                v[i] = v[i] * v[i + 1];
-                v.erase(v.begin() + i + size_t(1));
-                w.erase(w.begin() + i);
-                ++a;
+                Values[i] = Values[i] * Values[i + 1];
+                Values.erase(Values.begin() + i + size_t(1));
+                ArithmeticSigns.erase(ArithmeticSigns.begin() + i);
+                ++NumActions;
                 break;
             }
-            else if (w[i] ==m.back())
+            else if (ArithmeticSigns[i] ==m.back())
             {
-                v[i] = v[i]/v[i + 1];
-                v.erase(v.begin() + i + size_t(1));
-                w.erase(w.begin() + i);
-                ++a;
+                Values[i] = Values[i]/Values[i + 1];
+                Values.erase(Values.begin() + i + size_t(1));
+                ArithmeticSigns.erase(ArithmeticSigns.begin() + i);
+                ++NumActions;
                 break;
             }
         }
@@ -42,39 +42,39 @@ void ArifDeyst::ReshArifDeystUmnjAndDeln(vector<double>& v, vector<char>& w)
 }
 
 // функция для решения + - действий
-double ArifDeyst::ReshArifDeystPlusAndMinus(vector<double>& Otvetes, vector<char>& w)
+double ArifDeyst::CalcArithExpPlusAndMinus(vector<double>& Answers, vector<char>& ArithmeticSigns)
 {
-    int a = 0, k = 0;
-    for (size_t i = 0; i != w.size(); ++i)
-        if (w[i] == '+' || w[i] == '-' )
-            ++k;
+    int NumActions = 0, ComplActions = 0;//переменные для хранения кол.действий в выраж. и пер. подсчёта выпол-х действий
+    for (size_t i = 0; i != ArithmeticSigns.size(); ++i)
+        if (ArithmeticSigns[i] == '+' || ArithmeticSigns[i] == '-' )
+            ++ComplActions;
 
-    while (a < k)
+
+    while (NumActions < ComplActions)
     {
-        for (size_t i = 0; i != w.size(); ++i)
+        for (size_t i = 0; i != ArithmeticSigns.size(); ++i)
         {
-            if (w[i] == '+')
+            if (ArithmeticSigns[i] == '+')
             {
-                Otvetes[i] = Otvetes[i] + Otvetes[i + 1];
-                Otvetes.erase(Otvetes.begin() + i + 1);
-                w.erase(w.begin() + i);
-                ++a;
+                Answers[i] = Answers[i] + Answers[i + 1];
+                Answers.erase(Answers.begin() + i + 1);
+                ArithmeticSigns.erase(ArithmeticSigns.begin() + i);
+                ++NumActions;
                 break;
             }
-            else if (w[i] == '-')
+            else if (ArithmeticSigns[i] == '-')
             {
-                Otvetes[i] = Otvetes[i] - Otvetes[i + 1];
-                Otvetes.erase(Otvetes.begin() + i + 1);
-                w.erase(w.begin() + i);
-                ++a;
+                Answers[i] = Answers[i] - Answers[i + 1];
+                Answers.erase(Answers.begin() + i + 1);
+                ArithmeticSigns.erase(ArithmeticSigns.begin() + i);
+                ++NumActions;
                 break;
             }
         }
     }
-return Otvetes.front();
+    return Answers.front();
 }
-//new
-//new
+//функция для
 void ArifDeyst::getArifSignsForExp(string &text,vector<char>& ArithmeticSigns)
 {
     text+='|';
@@ -133,13 +133,13 @@ void ArifDeyst::arif_detstvie(double& Answer,string text)
     vector<char> ArithmeticSigns;
     vector<string> ValuesForExp;
     getDatesForExp(text,ValuesForExp,ArithmeticSigns);
-    vector<double> Otvetes;
+    vector<double> Answers;
 
     for(uint64_t i=0;i!=ValuesForExp.size();++i)
     {
-        Otvetes.push_back(Resheniy::stdString_toDouble(ValuesForExp[i]));
+        Answers.push_back(Resheniy::stdString_toDouble(ValuesForExp[i]));
     }
 
-    ReshArifDeystUmnjAndDeln(Otvetes,ArithmeticSigns);//решаеть ариф.действия умножение и деление
-    Answer=ReshArifDeystPlusAndMinus(Otvetes,ArithmeticSigns);//решаеть ариф.действия сложение и вычитание
+    CalcArithExpMultAndDiv(Answers,ArithmeticSigns);//решаеть ариф.действия умножение и деление
+    Answer=CalcArithExpPlusAndMinus(Answers,ArithmeticSigns);//решаеть ариф.действия сложение и вычитание
 }
