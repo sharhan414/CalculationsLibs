@@ -5,83 +5,83 @@ Procents::Procents()
 {
 
 }
-string Procents::resheniya2(string& Value)
+string Procents::getOnePercent(string& Value)
 {
 
     double x=stdString_toDouble(Value) ;//  text.toDouble(&error);
-    x=Procent(x);
+    x=Percent(x);
     return to_stdString(x);
 }
-double Procents::PlusProcentorv(double d, double x)
+double Procents::PlusPercens(double Value, double Percents)
 {
-    x /= 100;
-    x += 1;
-    d *= x;
-    return d;
+    Percents /= 100;
+    Percents += 1;
+    Value *= Percents;
+    return Value;
 }
-double Procents::MinusProcentorv(double d, double x)
+double Procents::MinusPercens(double Value, double Percents)
 {
-    x /= 100;
-    x = 1 - x;
-    d *= x;
-    return d;
+    Percents /= 100;
+    Percents = 1 - Percents;
+    Value *= Percents;
+    return Value;
 }
 
-double Procents::Procent(double x)
+double Procents::Percent(double x)
 {
     return x/100;
 }
 
-string Procents::resheniya(string& beginText, string& endText, string& Func)
+string Procents::CalcPercentsFroExp(string& strValue, string& strPercents, string& Func)
 {
 
-    double x=stdString_toDouble(beginText) ;//BeginZnach.toDouble(&error);
-    double y=stdString_toDouble(endText) ;
+    double Value=stdString_toDouble(strValue) ;//BeginZnach.toDouble(&error);
+    double Percents=stdString_toDouble(strPercents) ;
 
     if(Error)
     {
         return string();
     }
-    double otvet_d{0};
+    double Answer=0;
     if(Func=="+%")
     {
-        otvet_d= PlusProcentorv(x,y);
+        Answer= PlusPercens(Value,Percents);
             }
     if(Func == string("-%"))
     {
-        otvet_d= MinusProcentorv(x,y);
+        Answer= MinusPercens(Value,Percents);
     }
 
-    return  to_stdString(otvet_d);
+    return  to_stdString(Answer);
 }
 
 void Procents::CalculatePercent(string& text)
 {
 
-    vector<string> v{"+%","-%","%"};
-    for (vector<string>::size_type j = 0; j != v.size(); ++j)
+    vector<string> TypesPercents{"+%","-%","%"};
+    for(auto percent:TypesPercents)
     {
         auto itBegin = text.end(), itEnd = text.end();
         auto it = text.begin();
 
-    while ((it = search(it, text.end(), v[j].begin(), v[j].end())) != text.end())
-    {
-        string beginText, endText;
-
-        beginText=SearchBeginText(text,it,itBegin); //begin text
-        if(v[j]=="%")
+        while ((it = search(it, text.end(), percent, percent)) != text.end())
         {
-            string otvet = resheniya2(beginText);
-            text.erase(itBegin, it+1);
+            string beginStrValue, endStrValue;
+
+            beginStrValue=SearchBeginText(text,it,itBegin); //begin text
+            if(percent=="%")
+            {
+                string otvet = getOnePercent(beginStrValue);
+                text.erase(itBegin, it+1);
+                it = text.insert(itBegin, otvet.begin(), otvet.end());
+                continue;
+            }
+
+            endStrValue=SearchEndText(text,percent,it,itEnd);  //end text
+
+            string otvet = CalcPercentsFroExp(beginStrValue, endStrValue, percent);
+            text.erase(itBegin, itEnd);
             it = text.insert(itBegin, otvet.begin(), otvet.end());
-            continue;
-        }
-
-        endText=SearchEndText(text,v[j],it,itEnd);  //end text
-
-        string otvet = resheniya(beginText, endText, v[j]);
-        text.erase(itBegin, itEnd);
-        it = text.insert(itBegin, otvet.begin(), otvet.end());
         }
     }
 }

@@ -9,11 +9,11 @@ public:
     void CalculatePercent(std::string& text);
 private:
 
-    std::string resheniya(std::string& beginText, std::string& endText, std::string& Func);
-    std::string resheniya2(std::string& Znach);
-    double PlusProcentorv(double, double );
-    double MinusProcentorv(double, double);
-    double Procent(double);
+    std::string CalcPercentsFroExp(std::string& beginText, std::string& endText, std::string& Func);
+    std::string getOnePercent(std::string& Value);
+    double PlusPercens(double, double );
+    double MinusPercens(double, double);
+    double Percent(double);
 };
 
 #endif // PROCENTS_H
