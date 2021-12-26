@@ -2,7 +2,7 @@
 #define RESHENIY_H
 
 #include <algorithm>
-#include <iostream>
+
 #include <string>
 #include <cmath>
 #include <iterator>
