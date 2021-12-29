@@ -25,6 +25,7 @@ protected:
     std::string SearchEndText(std::string&,std::string,std::string::iterator&,std::string::iterator&) ;
     bool Error=false;
     const std::string UserChars = "0123456789.";
+
 };
 
 #endif // RESHENIY_H

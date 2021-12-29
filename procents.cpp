@@ -64,7 +64,7 @@ void Procents::CalculatePercent(string& text)
         auto itBegin = text.end(), itEnd = text.end();
         auto it = text.begin();
 
-        while ((it = search(it, text.end(), percent, percent)) != text.end())
+        while ((it = search(it, text.end(), percent.begin(), percent.end())) != text.end())
         {
             string beginStrValue, endStrValue;
 

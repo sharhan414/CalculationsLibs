@@ -5,13 +5,12 @@
 #include <iterator>
 #include "reshtrigfunc.h"
 #include "arifdeyst.h"
-#include "procents.h"
 #include "log.h"
 #include "factorial.h"
 #include "sqrt.h"
 #include "pow.h"
 #include <QString>
-
+#include "calcpercents.h"
 class MathExpressions
 {
 public:
@@ -27,7 +26,7 @@ private:
 
 private:
     ReshTrigFunc trig;
-    Procents Proc;
+    CalcPercents Proc;
     ArifDeyst arif;
     Log log;
     Factorial factorial;

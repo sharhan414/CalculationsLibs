@@ -13,7 +13,7 @@ string ReshTrigFunc::resheniya(string& Funk, string& Value)
 {   
     double DoubleVal=stdString_toDouble(Value),Ancwer=0;
 
-    if(Error)
+    if(!Error)
         return string();
 
     double ugol=UgolToradians(DoubleVal);
@@ -71,12 +71,12 @@ void ReshTrigFunc::trigonometr(string& text)
         auto it =text.begin();
         while ((it=search(it, text.end(), v[j].begin(), v[j].end()) )!= text.end())
         {
-            cout<<"it="<<it-text.begin()<<" text size="<<text.size()<<endl;
+
             auto endIt = it ;
             string EndText = SearchEndText(text,v[j],it,endIt);
             string otvet = resheniya(v[j], EndText);
 
-            if(Error)
+            if(!Error)
             {
                 return ;
             }

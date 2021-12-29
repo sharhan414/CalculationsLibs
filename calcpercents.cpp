@@ -67,7 +67,6 @@ string CalcPercents::CalcPercentsByValues(string& strValue, string& strPercents,
 {
     double Value=stdString_toDouble(strValue) ;//BeginZnach.toDouble(&error);
     double Percents=stdString_toDouble(strPercents) ;
-    std::cout<<"B:"<<strValue<<"   E:"<<strPercents<<std::endl;
     if(!Error)
     {
         return string();
@@ -81,7 +80,6 @@ string CalcPercents::CalcPercentsByValues(string& strValue, string& strPercents,
     {
         Answer= MinusPercens(Value,Percents);
     }
-    cout<<"answer:"<<Answer<<endl;
     return  to_stdString(Answer);
 }
 

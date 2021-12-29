@@ -9,7 +9,7 @@ public:
 
     void CalculatePow(std::string&);
 private:
-    std::string resheniya(std::string&,std::string&);
+    std::string resheniya(std::string& StrBeginValue,std::string&StrEndValue);
 
 };
 

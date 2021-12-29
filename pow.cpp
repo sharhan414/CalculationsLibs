@@ -7,16 +7,16 @@ Pow::Pow()
 
 }
 
-string Pow::resheniya(string& behinText,string& endText)
+string Pow::resheniya(string& StrBeginValue,string& StrEndValue)
 {
 
-    double DBeginText=stdString_toDouble(behinText);//приобразем behinText в число
-    double DEndText= stdString_toDouble(endText);//приобразем endText в число
+    double DBeginValue=stdString_toDouble(StrBeginValue);//приобразем behinText в число
+    double DEndValue= stdString_toDouble(StrEndValue);//приобразем endText в число
 
     if(Error)
         return string();
 
-    double DOtvet=pow(DBeginText,DEndText);
+    double DOtvet=pow(DBeginValue,DEndValue);
 
     return to_stdString(DOtvet);
 }
