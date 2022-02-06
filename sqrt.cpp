@@ -59,9 +59,9 @@ string Sqrt::resheniya(string& behinText, string& endText)
         return string();
     }
 
-    double DBeginText=stdString_toDouble(behinText);
-    double DEndText=stdString_toDouble(endText);
-    double DOtvet=nsqrt(DEndText,DBeginText);
+    double DBeginValue=stdString_toDouble(behinText);
+    double DEndValue=stdString_toDouble(endText);
+    double D_Answer=nsqrt(DEndValue,DBeginValue);
 
-    return to_stdString(DOtvet);
+    return to_stdString(D_Answer);
 }

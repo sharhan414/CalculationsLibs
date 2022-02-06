@@ -17,7 +17,7 @@ void MathExpressions::CalculateMathExp(string & text)
 string MathExpressions::ApplicationFuncCalc(string text)
 {
 
-    factorial.CalculateFactorial(text);//вычисляет фактириалы      
+    factorial.CalculateFactorial(text);//вычисляет фактириалы
     trig.CalculateTrigFunc(text);//вычисляет тригонометрических функций      
     if(trig.isError())
         qDebug()<<"v trig error";

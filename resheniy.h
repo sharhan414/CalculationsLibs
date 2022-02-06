@@ -10,6 +10,10 @@
 class Resheniy
 {
 public:
+    enum class CalcFuncError
+    {
+    delNull,arcTrihFunc,notNatNumFactorial
+    };
     Resheniy();
     bool isError()
     {

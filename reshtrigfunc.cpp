@@ -1,88 +1,98 @@
 #include "reshtrigfunc.h"
 #include <vector>
-using namespace std;
+#include <cmath>
+#include <iostream>
 ReshTrigFunc::ReshTrigFunc()
 {
-
+    Error=false;
 }
-void ReshTrigFunc::CalculateTrigFunc(string& text)
+void ReshTrigFunc::CalculateTrigFunc(std::string& text)
 {
     trigonometr(text);
 }
-string ReshTrigFunc::resheniya(string& Funk, string& Value)
+std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
 {   
-    double DoubleVal=stdString_toDouble(Value),Ancwer=0;
+    std::cout<<"++++++++111111:"<<Value<<std::endl;
+    double DoubleVal=stdString_toDouble(Value),Answer=0;
 
-    if(!Error)
-        return string();
-
-    double ugol=UgolToradians(DoubleVal);
+    if(Error)
+    {
+        return std::string();
+    }
+std::cout<<"++++++2222222222"<<std::endl;
+    double ugol=UgolToRadians(DoubleVal);
     if (Funk == "sin")
     {
-        Ancwer=sin(ugol);
+        std::cout<<"++++++++++aaaaaa"<<std::endl;
+        Answer=std::sin(ugol);
     }
     else if (Funk == "cos")
     {
-        Ancwer=cos(ugol);
+        Answer=cos(ugol);
     }
     else if (Funk == "tag")
     {
-        Ancwer=tan(ugol);
+        Answer=std::tan(ugol);
     }
 
     if (Funk == "asin")
     {
+        std::cout<<"1 asin("<<DoubleVal<<")"<<std::endl;
         if(DoubleVal>1 || DoubleVal<-1)
         {
             Error=true;
-            return string();
+            return std::string();
         }
-        Ancwer=asin(DoubleVal);
+        std::cout<<"  asin("<<DoubleVal<<")"<<std::endl;
+        Answer=std::asin(DoubleVal);
     }
     else if (Funk == "acos")
     {
         if(DoubleVal>1 || DoubleVal<-1)
         {
             Error=true;
-            return string();
+            return std::string();
         }
-        Ancwer=acos(DoubleVal);
+
+        Answer=std::acos(DoubleVal);
     }
     else if (Funk == "atag")
     {
-        Ancwer=atan(DoubleVal);
+        Answer=std::atan(DoubleVal);
     }
-
-    return to_stdString(Ancwer);
+std::cout<<"3333333333"<<std::endl;
+    return to_stdString(Answer);
 }
 
-double ReshTrigFunc::UgolToradians(double & x)
+double ReshTrigFunc::UgolToRadians(double & x)
 {
     return x/(180/Pi);
 }
 
-void ReshTrigFunc::trigonometr(string& text)
+void ReshTrigFunc::trigonometr(std::string& text)
 {
-    vector<string> v{"asin","acos","atag","sin","cos","tag"};
+    std::vector<std::string> tr_funcs{"asin","acos","atag","sin","cos","tag"};
 
-    for (vector<string>::size_type j = 0; j != v.size(); ++j)
+    for (auto tr_func:tr_funcs)
     {
 
         auto it =text.begin();
-        while ((it=search(it, text.end(), v[j].begin(), v[j].end()) )!= text.end())
+        while ((it=search(it, text.end(), tr_func.begin(), tr_func.end()) )!= text.end())//в условии проверяется есть ли данная фун-я в выражении
         {
 
+            std::cout<<"TEXT="<<text<<std::endl;
             auto endIt = it ;
-            string EndText = SearchEndText(text,v[j],it,endIt);
-            string otvet = resheniya(v[j], EndText);
+            std::string EndText = SearchEndText(text,tr_func,it,endIt);
+            std::cout<<"END TEXT="<<EndText<<std::endl;
+            std::string Answer = resheniya(tr_func, EndText);
 
-            if(!Error)
+            if(Error)
             {
                 return ;
             }
 
             text.erase(it, endIt);
-            it=text.insert(it, otvet.begin(), otvet.end());
+            it=text.insert(it, Answer.begin(), Answer.end());
          }
      }
 }

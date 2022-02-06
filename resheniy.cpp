@@ -1,5 +1,6 @@
 #include "resheniy.h"
 #include <QString>
+#include <iostream>
 using namespace std;
 Resheniy::Resheniy()
 {
@@ -14,8 +15,11 @@ string Resheniy::to_stdString(double values)
 
 double Resheniy::stdString_toDouble(string strValues)
 {
+    cout<<"std="<<strValues<<endl;
     QString QStrVal=QString::fromStdString(strValues);
-    return QStrVal.toDouble(&Error);
+    auto answer=QStrVal.toDouble(&Error);
+    Error= !Error;
+    return answer;
 }
 
 std::string Resheniy::SearchBeginText(string& text,string::iterator& it,string::iterator& itBegin)
@@ -44,22 +48,26 @@ std::string Resheniy::SearchBeginText(string& text,string::iterator& it,string::
 string Resheniy::SearchEndText(string & text,string funk,string::iterator &it, string::iterator &itEnd)
 {
 
-     for (auto i = it + int(funk.size()); i != text.end(); ++i)
-     {
-         if (find(UserChars.begin(), UserChars.end(), *i) == UserChars.end())
-         {
-             string Textproc(it + int64_t(funk.size()), i);
-             itEnd = i;
-             return Textproc;
-
-         }
-         else if (i == text.end() - 1)
-         {
-             string Textproc(it + int64_t(funk.size()), i + 1);
-             itEnd = i + 1;
-             return Textproc;
-         }
-     }
+    for (auto i = it + int(funk.size()); i != text.end(); ++i)
+    {
+        if(*(it+ int(funk.size()))=='-')//если после фун-и стоить знак -, то его включаем а значение
+        {
+             i++;
+        }
+        cout<<"*i="<<*i<<endl;
+        if (find(UserChars.begin(), UserChars.end(), *i) == UserChars.end())
+        {
+            string Textproc(it + int64_t(funk.size()), i);
+            itEnd = i;
+            return Textproc;
+        }
+        else if (i == text.end() - 1)
+        {
+            string Textproc(it + int64_t(funk.size()), i + 1);
+            itEnd = i + 1;
+            return Textproc;
+        }
+    }
 }
 
 

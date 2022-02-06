@@ -11,7 +11,7 @@ public:
     std::string resheniya(std::string&, std::string&);
 //СalcTrigonometricFunc
 private:
-    double UgolToradians(double&);
+    double UgolToRadians(double&);
     void trigonometr(std::string& text);
     const double Pi= 3.141592653589;
 };

@@ -137,6 +137,7 @@ void ArifDeyst::arif_detstvie(double& Answer,string text)
 
     for(uint64_t i=0;i!=ValuesForExp.size();++i)
     {
+        std::cout<<"+++++ooooooo+++++ ["<<ValuesForExp[i]<<"]"<<std::endl;
         Answers.push_back(stdString_toDouble(ValuesForExp[i]));
     }
 
