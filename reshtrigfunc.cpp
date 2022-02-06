@@ -12,18 +12,15 @@ void ReshTrigFunc::CalculateTrigFunc(std::string& text)
 }
 std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
 {   
-    std::cout<<"++++++++111111:"<<Value<<std::endl;
     double DoubleVal=stdString_toDouble(Value),Answer=0;
 
     if(Error)
     {
         return std::string();
     }
-std::cout<<"++++++2222222222"<<std::endl;
     double ugol=UgolToRadians(DoubleVal);
     if (Funk == "sin")
     {
-        std::cout<<"++++++++++aaaaaa"<<std::endl;
         Answer=std::sin(ugol);
     }
     else if (Funk == "cos")
@@ -60,7 +57,7 @@ std::cout<<"++++++2222222222"<<std::endl;
     {
         Answer=std::atan(DoubleVal);
     }
-std::cout<<"3333333333"<<std::endl;
+
     return to_stdString(Answer);
 }
 
@@ -79,11 +76,9 @@ void ReshTrigFunc::trigonometr(std::string& text)
         auto it =text.begin();
         while ((it=search(it, text.end(), tr_func.begin(), tr_func.end()) )!= text.end())//в условии проверяется есть ли данная фун-я в выражении
         {
-
-            std::cout<<"TEXT="<<text<<std::endl;
             auto endIt = it ;
             std::string EndText = SearchEndText(text,tr_func,it,endIt);
-            std::cout<<"END TEXT="<<EndText<<std::endl;
+
             std::string Answer = resheniya(tr_func, EndText);
 
             if(Error)

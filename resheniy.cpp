@@ -54,7 +54,6 @@ string Resheniy::SearchEndText(string & text,string funk,string::iterator &it, s
         {
              i++;
         }
-        cout<<"*i="<<*i<<endl;
         if (find(UserChars.begin(), UserChars.end(), *i) == UserChars.end())
         {
             string Textproc(it + int64_t(funk.size()), i);
