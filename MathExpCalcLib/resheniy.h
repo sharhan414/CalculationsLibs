@@ -19,6 +19,7 @@ public:
     {
         return Error;
     }
+    const  double Math_Pi=3.141592654;
     static std::string to_stdString(double);
     double stdString_toDouble(std::string strValues);
     template<class Str>

@@ -41,7 +41,7 @@ std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
             return std::string();
         }
         std::cout<<"  asin("<<DoubleVal<<")"<<std::endl;
-        Answer=std::asin(DoubleVal);
+        Answer=std::asin(DoubleVal)*(180/Math_Pi);
     }
     else if (Funk == "acos")
     {
@@ -51,11 +51,11 @@ std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
             return std::string();
         }
 
-        Answer=std::acos(DoubleVal);
+        Answer=std::acos(DoubleVal)*(180/Math_Pi);
     }
     else if (Funk == "atag")
     {
-        Answer=std::atan(DoubleVal);
+        Answer=std::atan(DoubleVal)*(180/Math_Pi);
     }
 
     return to_stdString(Answer);
