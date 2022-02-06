@@ -2,16 +2,15 @@
 #include <string>
 #include <QString>
 #include <QDebug>
-#include "mathexpressions.h"
+#include "MathExpCalcLib/mathexpressions.h"
 
-#include "calcpercents.h"
 
 using namespace std;
 
 int main()
 {
 
-    QString str="sin(-30)";
+    QString str="(-30+15)-6+sin(-30)";
     MathExpressions calc;
 
 
