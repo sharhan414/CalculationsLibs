@@ -18,7 +18,7 @@ std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
     {
         return std::string();
     }
-    double ugol=UgolToRadians(DoubleVal);
+    double ugol=angleToRadians(DoubleVal);
     if (Funk == "sin")
     {
         Answer=std::sin(ugol);
@@ -61,23 +61,23 @@ std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
     return to_stdString(Answer);
 }
 
-double ReshTrigFunc::UgolToRadians(double & x)
+double ReshTrigFunc::angleToRadians(double & x)
 {
     return x/(180/Pi);
 }
 
-void ReshTrigFunc::trigonometr(std::string& text)
+void ReshTrigFunc::trigonometr(std::string& mathExp)
 {
     std::vector<std::string> tr_funcs{"asin","acos","atag","sin","cos","tag"};
 
     for (auto tr_func:tr_funcs)
     {
 
-        auto it =text.begin();
-        while ((it=search(it, text.end(), tr_func.begin(), tr_func.end()) )!= text.end())//в условии проверяется есть ли данная фун-я в выражении
+        auto it =mathExp.begin();
+        while ((it=search(it, mathExp.end(), tr_func.begin(), tr_func.end()) )!= mathExp.end())//в условии проверяется есть ли данная фун-я в выражении
         {
             auto endIt = it ;
-            std::string EndText = SearchEndText(text,tr_func,it,endIt);
+            std::string EndText = SearchEndText(mathExp,tr_func,it,endIt);
 
             std::string Answer = resheniya(tr_func, EndText);
 
@@ -86,8 +86,8 @@ void ReshTrigFunc::trigonometr(std::string& text)
                 return ;
             }
 
-            text.erase(it, endIt);
-            it=text.insert(it, Answer.begin(), Answer.end());
+            mathExp.erase(it, endIt);
+            it=mathExp.insert(it, Answer.begin(), Answer.end());
          }
      }
 }

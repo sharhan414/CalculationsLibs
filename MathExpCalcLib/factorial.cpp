@@ -4,18 +4,18 @@ Factorial::Factorial()
 {
 
 }
-void Factorial::CalculateFactorial(string& text)
+void Factorial::CalculateFactorial(string& mathExp)
 {
     string factorials = "!";
-    auto itBegin = text.end();
-    auto it = text.begin();
+    auto itBegin = mathExp.end();
+    auto it = mathExp.begin();
 
-    while ((it= search(it, text.end(), factorials.begin(), factorials.end())) != text.end())
+    while ((it= search(it, mathExp.end(), factorials.begin(), factorials.end())) != text.end())
     {
-        string beginText=SearchBeginText(text,it,itBegin);
+        string beginText=SearchBeginText(mathExp,it,itBegin);
         string otvet = resheniya(beginText);
-        text.erase(itBegin, it+1);
-        it = text.insert(itBegin, otvet.begin(), otvet.end());
+        mathExp.erase(itBegin, it+1);
+        it = mathExp.insert(itBegin, otvet.begin(), otvet.end());
     }
 }
 string Factorial::resheniya(string& Znachenie)

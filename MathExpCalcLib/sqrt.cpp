@@ -6,42 +6,42 @@ Sqrt::Sqrt()
 
 }
 
-void Sqrt::CalculateSqrt(string& text)
+void Sqrt::CalculateSqrt(string& mathExp)
 {
-    CalculateNSqtn(text);
-    Calculate2Sqrt(text);
+    CalculateNSqtn(mathExp);
+    Calculate2Sqrt(mathExp);
 }
 
-void Sqrt::CalculateNSqtn(string& text){
+void Sqrt::CalculateNSqtn(string& mathExp){
     string nsqrn = "nsqrt";
 
-    auto itBegin = text.end(), itEnd = text.end();
-    auto it =text.begin();
+    auto itBegin = mathExp.end(), itEnd = mathExp.end();
+    auto it =mathExp.begin();
 
-    while ((it=search(it, text.end(), nsqrn.begin(), nsqrn.end())) != text.end())
+    while ((it=search(it, mathExp.end(), nsqrn.begin(), nsqrn.end())) != mathExp.end())
     {
         string beginText, endText;
 
-        beginText=SearchBeginText(text,it,itBegin); // search begin text
-        endText=SearchEndText(text,nsqrn,it,itEnd);   // search end text
+        beginText=SearchBeginText(mathExp,it,itBegin); // search begin text
+        endText=SearchEndText(mathExp,nsqrn,it,itEnd);   // search end text
         string otvet = resheniya(beginText, endText);
-        text.erase(itBegin, itEnd);
-        it = text.insert(itBegin, otvet.begin(), otvet.end());
+        mathExp.erase(itBegin, itEnd);
+        it = mathExp.insert(itBegin, otvet.begin(), otvet.end());
     }
 }
-void Sqrt::Calculate2Sqrt(string& text)
+void Sqrt::Calculate2Sqrt(string& mathExp)
 {
     string Sqrt = "sqrt";
-    auto it = search(text.begin(), text.end(), Sqrt.begin(), Sqrt.end());
+    auto it = search(mathExp.begin(), mathExp.end(), Sqrt.begin(), Sqrt.end());
 
-    while (it != text.end())
+    while (it != mathExp.end())
     {
         auto endIt = it;
-        string strValue = SearchEndText(text,Sqrt,it,endIt);
+        string strValue = SearchEndText(mathExp,Sqrt,it,endIt);
         string Answer = getMathSqrtAnswer(strValue);
-        it=text.erase(it,it+Sqrt.size()+strValue.size());
-        it=text.insert(it,Answer.begin(),Answer.end());
-        it = search(text.begin(), text.end(), Sqrt.begin(), Sqrt.end());
+        it=mathExp.erase(it,it+Sqrt.size()+strValue.size());
+        it=mathExp.insert(it,Answer.begin(),Answer.end());
+        it = search(mathExp.begin(), mathExp.end(), Sqrt.begin(), Sqrt.end());
     }
 }
 string Sqrt::getMathSqrtAnswer(string& strValue)
@@ -51,15 +51,15 @@ string Sqrt::getMathSqrtAnswer(string& strValue)
     return to_stdString(AnswerVal);
 }
 
-string Sqrt::resheniya(string& behinText, string& endText)
+string Sqrt::resheniya(string& beginText, string& endText)
 {
-    if(behinText.empty())
+    if(beginText.empty())
     {
         Error=true;
         return string();
     }
 
-    double DBeginValue=stdString_toDouble(behinText);
+    double DBeginValue=stdString_toDouble(beginText);
     double DEndValue=stdString_toDouble(endText);
     double D_Answer=nsqrt(DEndValue,DBeginValue);
 

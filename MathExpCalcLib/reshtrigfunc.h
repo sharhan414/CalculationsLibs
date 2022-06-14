@@ -7,11 +7,11 @@ class ReshTrigFunc:public Resheniy
 public:
 
     ReshTrigFunc();
-    void CalculateTrigFunc(std::string& text);
+    void CalculateTrigFunc(std::string& mathExp);
     std::string resheniya(std::string&, std::string&);
 //СalcTrigonometricFunc
 private:
-    double UgolToRadians(double&);
+    double angleToRadians(double&);
     void trigonometr(std::string& text);
     const double Pi= 3.141592653589;
 };

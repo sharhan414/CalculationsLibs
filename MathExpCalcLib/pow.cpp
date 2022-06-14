@@ -21,23 +21,23 @@ string Pow::resheniya(string& StrBeginValue,string& StrEndValue)
     return to_stdString(DOtvet);
 }
 
-void Pow::CalculatePow(string& text)
+void Pow::CalculatePow(string& mathExp)
 {
     string pow = "^";
 
-    auto itBegin = text.end(), itEnd = text.end();
-    auto it = text.begin();
+    auto itBegin = mathExp.end(), itEnd = mathExp.end();
+    auto it = mathExp.begin();
 
-    while ((it = search(it, text.end(), pow.begin(), pow.end())) != text.end())
+    while ((it = search(it, mathExp.end(), pow.begin(), pow.end())) != mathExp.end())
     {
         string beginText, endText;
 
-        beginText=SearchBeginText(text,it,itBegin); // search begin text
-        endText=SearchEndText(text,pow,it,itEnd);   // search end text
+        beginText=SearchBeginText(mathExp,it,itBegin); // search begin text
+        endText=SearchEndText(mathExp,pow,it,itEnd);   // search end text
 
         string otvet = resheniya(beginText, endText);
-        text.erase(itBegin, itEnd);
-        it = text.insert(itBegin, otvet.begin(), otvet.end());      
+        mathExp.erase(itBegin, itEnd);
+        it = mathExp.insert(itBegin, otvet.begin(), otvet.end());
     }
 }
 

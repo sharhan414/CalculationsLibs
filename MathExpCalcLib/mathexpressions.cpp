@@ -8,26 +8,26 @@ MathExpressions::MathExpressions()
 
 }
 
-void MathExpressions::CalculateMathExp(string & text)
+void MathExpressions::CalculateMathExp(string & mathExp)
 {
-    string::iterator b=text.begin(),e=text.end(),e2=text.end();
-    OpeningBrackets(text,b,e,e2);
+    string::iterator b=mathExp.begin(),e=mathExp.end(),e2=mathExp.end();
+    OpeningBrackets(mathExp,b,e,e2);
 }
 
-string MathExpressions::ApplicationFuncCalc(string text)
+string MathExpressions::ApplicationFuncCalc(string mathExp)
 {
 
-    factorial.CalculateFactorial(text);//вычисляет фактириалы
-    trig.CalculateTrigFunc(text);//вычисляет тригонометрических функций      
+    factorial.CalculateFactorial(mathExp);//вычисляет фактириалы
+    trig.CalculateTrigFunc(mathExp);//вычисляет тригонометрических функций
     if(trig.isError())
         qDebug()<<"v trig error";
 
-    Proc.CalculatePercent(text);//вычисляет процент  
-    log.CalculatehLog(text);//вычисляет логарифм   
-    qsrt.CalculateSqrt(text);//вычисляет корней   
-    pow.CalculatePow(text);//вычисляет спепеней   
+    Proc.CalculatePercent(mathExp);//вычисляет процент
+    log.CalculatehLog(mathExp);//вычисляет логарифм
+    qsrt.CalculateSqrt(mathExp);//вычисляет корней
+    pow.CalculatePow(mathExp);//вычисляет спепеней
     double value=0;
-    arif.arif_detstvie(value,text);
+    arif.arif_detstvie(value,mathExp);
     return QString::number(value).toStdString();
 }
 
@@ -38,14 +38,14 @@ string MathExpressions::ApplicationFuncCalc(string text)
 /// \param end
 /// \param verhEnd
 /////////////////////////////////////////////////////
-void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
+void MathExpressions::OpeningBrackets(string& mathExp, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
 {
 //функция для раскрытия скобок
 
-    if(!getTextFromBrackets(text, begin, end, verhEnd ))
+    if(!getTextFromBrackets(mathExp, begin, end, verhEnd ))
         return;
     int bracket_close = 0, bracket_open = 0;//переменные для подсчёта открых и закрытых скобок
-    auto c = text.end();
+    auto c = mathExp.end();
     auto i = begin;
 
     while (i != end)
@@ -54,7 +54,7 @@ void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, str
         if (*i == '(')
         {           //подсчитывает количество открытых скобок
             ++bracket_open;
-            if (c == text.end())
+            if (c == mathExp.end())
                 c = i;                  //сохраняет позицию первой открытой скобки
         }
         else if (*i == ')')
@@ -63,53 +63,53 @@ void MathExpressions::OpeningBrackets(string& text, string::iterator& begin, str
         }
         if (bracket_close != 0 && bracket_open == bracket_close)
         {        //если количество окрытых и закрытых скобок равно, то
-            int64_t ras1 = int64_t(text.size());
-            OpeningBrackets(text, ++c, i,end);
-            int64_t ras2 = int64_t(text.size());     //
+            int64_t ras1 = int64_t(mathExp.size());
+            OpeningBrackets(mathExp, ++c, i,end);
+            int64_t ras2 = int64_t(mathExp.size());     //
             int64_t ras =  ras1-ras2;
             verhEnd -= ras;
-            if (!getTextFromBrackets(text, begin,end, verhEnd))
+            if (!getTextFromBrackets(mathExp, begin,end, verhEnd))
                 return;		//закрываем нашу функцию
-            c = text.end();
+            c = mathExp.end();
             bracket_close = 0;
             bracket_open = 0;
         }
         ++i;//увеличиваем счетшик на 1
     }
 }
-bool  MathExpressions::getTextFromBrackets(string& text, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
+bool  MathExpressions::getTextFromBrackets(string& mathExp, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
 {
 
     string textskobky(begin, end);//вычисляется текст нашей скобки
-    int64_t sizeIshodText = int64_t(text.size());
+    int64_t sizeIshodText = int64_t(mathExp.size());
 
     if (find(textskobky.begin(), textskobky.end(), '(') == textskobky.end() && !textskobky.empty()) //если в нашем тексте нету скобок то
     {
         string ansewr = ApplicationFuncCalc(textskobky);//вычисляем ответ арифметических действий в нашем тексте и ответ сохраняем в переменной "otvet"
 
-        if (begin == text.begin() && end==text.end())
+        if (begin == mathExp.begin() && end==mathExp.end())
         {//
-            text.clear();
-            text = ansewr;
-            begin = text.begin();
-            end = text.end();
+            mathExp.clear();
+            mathExp = ansewr;
+            begin = mathExp.begin();
+            end = mathExp.end();
             verhEnd = end;
 
          }
         else
         {
-            if (begin != text.begin() && end != text.end())
-                end = text.erase(begin - 1, end + 1);
-            else if (begin == text.begin() && end != text.end())
-                end = text.erase(begin , end + 1);
-            else if (begin != text.begin() && end == text.end())
-                end = text.erase(begin-1, end );
+            if (begin != mathExp.begin() && end != mathExp.end())
+                end = mathExp.erase(begin - 1, end + 1);
+            else if (begin == mathExp.begin() && end != mathExp.end())
+                end = mathExp.erase(begin , end + 1);
+            else if (begin != mathExp.begin() && end == mathExp.end())
+                end = mathExp.erase(begin-1, end );
 
-            text.insert(end, ansewr.begin(), ansewr.end());
+            mathExp.insert(end, ansewr.begin(), ansewr.end());
             end = begin;
-            if (begin != text.begin())
+            if (begin != mathExp.begin())
                 --end;
-                int64_t sizeKonechText = int64_t(text.size());
+                int64_t sizeKonechText = int64_t(mathExp.size());
                 int64_t raznica = sizeIshodText - sizeKonechText;
                 verhEnd = verhEnd - raznica;
          }
@@ -119,19 +119,19 @@ bool  MathExpressions::getTextFromBrackets(string& text, string::iterator& begin
         return true;
 }
 
-void MathExpressions::InsertNewSingExp(u16string &text,u16string Sign, u16string newSign)
+void MathExpressions::InsertNewSingExp(u16string &mathExp,u16string Sign, u16string newSign)
 {
-    auto iter=text.begin();
-    while(iter!=text.end())
+    auto iter=mathExp.begin();
+    while(iter!=mathExp.end())
     {
 
-        iter=search(iter,text.end(),Sign.begin(),Sign.end());
-        if(iter==text.end())
+        iter=search(iter,mathExp.end(),Sign.begin(),Sign.end());
+        if(iter==mathExp.end())
         {
             break;
         }
-        iter=text.erase(iter,iter+Sign.size());
-        iter=text.insert(iter,newSign.begin(),newSign.end());
+        iter=mathExp.erase(iter,iter+Sign.size());
+        iter=mathExp.insert(iter,newSign.begin(),newSign.end());
     }
 }
 

@@ -23,7 +23,7 @@ public:
     static std::string to_stdString(double);
     double stdString_toDouble(std::string strValues);
     template<class Str>
-    void InsertNewSingExp(Str &text,Str Sign, Str newSign);
+    void InsertNewSingExp(Str &mathExp,Str Sign, Str newSign);
 
 protected:
     std::string SearchBeginText(std::string&,std::string::iterator&,std::string::iterator&) ;
