@@ -18,17 +18,20 @@ string MathExpressions::ApplicationFuncCalc(string mathExp)
 {
 
     factorial.CalculateFactorial(mathExp);//вычисляет фактириалы
-    trig.CalculateTrigFunc(mathExp);//вычисляет тригонометрических функций
-    if(trig.isError())
+    calcTrigFunc.CalculateTrigFunc(mathExp);//вычисляет тригонометрических функций
+    if(calcTrigFunc.isError())//проверка на наличие ошибки при произведения действия
+    {
         qDebug()<<"v trig error";
+    }
 
-    Proc.CalculatePercent(mathExp);//вычисляет процент
+    calcPercent.CalculatePercent(mathExp);//вычисляет процент
+
     log.CalculatehLog(mathExp);//вычисляет логарифм
     qsrt.CalculateSqrt(mathExp);//вычисляет корней
     pow.CalculatePow(mathExp);//вычисляет спепеней
-    double value=0;
-    arif.arif_detstvie(value,mathExp);
-    return QString::number(value).toStdString();
+    double answer=arithAct.calcArithExp(mathExp);
+
+    return QString::number(answer).toStdString();
 }
 
 /////////////////////////////////////

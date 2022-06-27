@@ -1,7 +1,6 @@
 
 SOURCES += \
         $$PWD/arithoperations.cpp \
-        $$PWD/arifdeyst.cpp \
         $$PWD/calcpercents.cpp \
         $$PWD/factorial.cpp \
         $$PWD/log.cpp \
@@ -13,7 +12,6 @@ SOURCES += \
 
 HEADERS += \
     $$PWD/arithoperations.h \
-    $$PWD/arifdeyst.h \
     $$PWD/calcpercents.h \
     $$PWD/factorial.h \
     $$PWD/log.h \

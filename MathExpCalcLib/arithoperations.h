@@ -4,12 +4,20 @@
 #include <string>
 #include "resheniy.h"
 
+/*\
+
+  Класс ArithOperations может решить страндартные математические выражения по типу "-2*5+6/4-7+..."
+  для вычисления математического выражения необходимо создать объект типа ArithOperations и вызвать
+  у него метод calcArithExp которому нужно передать переменную std::string которая содержить мат.выражение
+
+ */
+
 class ArithOperations:public Resheniy
 {
 public:
     ArithOperations();
 
-    void arif_detstvie(double& otvet,std::string m);
+    double calcArithExp(std::string mathExp);
 private:
     void  CalcArithExpMultAndDiv(std::vector<double>&, std::vector<char>&);//решаеть ариф.действия умножение и деление
     double CalcArithExpPlusAndMinus(std::vector<double>&, std::vector<char>& );

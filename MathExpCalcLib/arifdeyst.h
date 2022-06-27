@@ -4,6 +4,17 @@
 #include <vector>
 #include <string>
 #include "resheniy.h"
+
+/*\
+
+
+
+
+
+
+
+
+ */
 class ArifDeyst:public Resheniy
 {
 public:

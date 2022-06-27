@@ -4,7 +4,7 @@
 #include <string>
 #include <iterator>
 #include "reshtrigfunc.h"
-#include "arifdeyst.h"
+#include "arithoperations.h"
 #include "log.h"
 #include "factorial.h"
 #include "sqrt.h"
@@ -25,9 +25,9 @@ private:
     static void InsertNewSingExp(std::u16string& mathExp,std::u16string Sign,std::u16string newSign);
 
 private:
-    ReshTrigFunc trig;
-    CalcPercents Proc;
-    ArifDeyst arif;
+    ReshTrigFunc calcTrigFunc;
+    CalcPercents calcPercent;
+    ArithOperations arithAct;
     Log log;
     Factorial factorial;
     Sqrt qsrt;
