@@ -8,7 +8,7 @@ ArithOperations::ArithOperations()
 {
 
 }
-double ArithOperations::calcArithExp( string mathExp)
+double ArithOperations::calcArithExp(string mathExp)
 {
     vector<char> ArithmeticSigns;
     vector<string> ValuesForExp;
