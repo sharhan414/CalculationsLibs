@@ -19,10 +19,10 @@ public:
     static void ReplacingSigns(QString&);
 
 private:
-    void OpeningBrackets(std::string& text, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd);
-    std::string ApplicationFuncCalc(std::string text);
-    bool  getTextFromBrackets(std::string& text, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd);
-    static void InsertNewSingExp(std::u16string& text,std::u16string Sign,std::u16string newSign);
+    void OpeningBrackets(std::string& mathExp, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd);
+    std::string ApplicationFuncCalc(std::string mathExp);
+    bool  getTextFromBrackets(std::string& mathExp, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd);
+    static void InsertNewSingExp(std::u16string& mathExp,std::u16string Sign,std::u16string newSign);
 
 private:
     ReshTrigFunc trig;

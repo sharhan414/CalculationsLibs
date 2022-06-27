@@ -7,10 +7,10 @@ CalcPercents::CalcPercents()
 }
 
 
-string CalcPercents::getOnePercent(string& Value)
+string CalcPercents::getOnePercent(string& strValue)
 {
 
-    double x=stdString_toDouble(Value) ;//  text.toDouble(&error);
+    double x=stdString_toDouble(strValue) ;//  text.toDouble(&error);
     x=Percent(x);
     return to_stdString(x);
 }
@@ -83,9 +83,9 @@ string CalcPercents::CalcPercentsByValues(string& strValue, string& strPercents,
     return  to_stdString(Answer);
 }
 
-void CalcPercents::CalculatePercent(string& text)
+void CalcPercents::CalculatePercent(string& mathExp)
 {
-    CalcPercentsFroExp(text,"+%");
-    CalcPercentsFroExp(text,"-%");
-    CalcPercentsFroExp(text,"%");
+    CalcPercentsFroExp(mathExp,"+%");
+    CalcPercentsFroExp(mathExp,"-%");
+    CalcPercentsFroExp(mathExp,"%");
 }

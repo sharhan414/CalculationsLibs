@@ -10,7 +10,7 @@ void Factorial::CalculateFactorial(string& mathExp)
     auto itBegin = mathExp.end();
     auto it = mathExp.begin();
 
-    while ((it= search(it, mathExp.end(), factorials.begin(), factorials.end())) != text.end())
+    while ((it= search(it, mathExp.end(), factorials.begin(), factorials.end())) != mathExp.end())
     {
         string beginText=SearchBeginText(mathExp,it,itBegin);
         string otvet = resheniya(beginText);

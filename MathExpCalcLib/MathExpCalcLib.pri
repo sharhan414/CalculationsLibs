@@ -1,6 +1,6 @@
 
 SOURCES += \
-    $$PWD/arithoperations.cpp \
+        $$PWD/arithoperations.cpp \
         $$PWD/arifdeyst.cpp \
         $$PWD/calcpercents.cpp \
         $$PWD/factorial.cpp \

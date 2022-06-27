@@ -7,7 +7,7 @@ class Log:public Resheniy
 public:
     Log();
 
-void CalculatehLog(std::string& text);
+void CalculatehLog(std::string& mathExp);
 private:
     std::string resheniya(std::string&,std::string&);
 };

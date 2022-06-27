@@ -12,7 +12,7 @@ public:
 //СalcTrigonometricFunc
 private:
     double angleToRadians(double&);
-    void trigonometr(std::string& text);
+    void trigonometr(std::string& mathExp);
     const double Pi= 3.141592653589;
 };
 
