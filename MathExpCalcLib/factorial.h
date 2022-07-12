@@ -1,6 +1,6 @@
 #ifndef FACTORIAL_H
 #define FACTORIAL_H
-#include "resheniy.h"
+#include "MathExpFunction.h"
 
 class Factorial:public Resheniy
 {

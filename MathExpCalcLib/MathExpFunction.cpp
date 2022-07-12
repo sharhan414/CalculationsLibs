@@ -15,7 +15,7 @@ string Resheniy::to_stdString(double values)
 
 double Resheniy::stdString_toDouble(string strValues)
 {
-    cout<<"std="<<strValues<<endl;
+
     QString QStrVal=QString::fromStdString(strValues);
     auto answer=QStrVal.toDouble(&Error);
     Error= !Error;
@@ -70,8 +70,8 @@ string Resheniy::SearchEndText(string & mathExp,string funk,string::iterator &it
 }
 
 
-template<class Str>
-void Resheniy::InsertNewSingExp(Str &mathExp, Str Sign,Str newSign)
+template<class MathExp>
+void Resheniy::replMathExp(MathExp &mathExp, MathExp Sign,MathExp newSign)
 {
 
     auto iter=mathExp.begin();

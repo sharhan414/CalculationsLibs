@@ -1,6 +1,6 @@
 #ifndef LOG_H
 #define LOG_H
-#include "resheniy.h"
+#include "MathExpFunction.h"
 
 class Log:public Resheniy
 {

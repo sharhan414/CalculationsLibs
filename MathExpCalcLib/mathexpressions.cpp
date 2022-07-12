@@ -111,10 +111,12 @@ bool  MathExpressions::getTextFromBrackets(string& mathExp, string::iterator& be
             mathExp.insert(end, ansewr.begin(), ansewr.end());
             end = begin;
             if (begin != mathExp.begin())
+            {
                 --end;
-                int64_t sizeKonechText = int64_t(mathExp.size());
-                int64_t raznica = sizeIshodText - sizeKonechText;
-                verhEnd = verhEnd - raznica;
+            }
+            int64_t sizeKonechText = int64_t(mathExp.size());
+            int64_t raznica = sizeIshodText - sizeKonechText;
+            verhEnd = verhEnd - raznica;
          }
              return false;
     }

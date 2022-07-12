@@ -2,7 +2,7 @@
 #define ARITHOPERATIONS_H
 #include <vector>
 #include <string>
-#include "resheniy.h"
+#include "MathExpFunction.h"
 
 /*\
 

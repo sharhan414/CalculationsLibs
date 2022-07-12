@@ -1,6 +1,6 @@
 #ifndef CALCPERCENTS_H
 #define CALCPERCENTS_H
-#include "resheniy.h"
+#include "MathExpFunction.h"
 
 class CalcPercents:public Resheniy
 {

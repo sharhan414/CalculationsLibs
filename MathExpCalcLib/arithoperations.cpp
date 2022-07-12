@@ -1,6 +1,6 @@
 #include "arithoperations.h"
 
-#include "resheniy.h"
+#include "MathExpFunction.h"
 #include <algorithm>
 #include <iostream>
 using namespace std;

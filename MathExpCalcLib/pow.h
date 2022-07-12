@@ -1,6 +1,6 @@
 #ifndef POW_H
 #define POW_H
-#include "resheniy.h"
+#include "MathExpFunction.h"
 
 class Pow:public Resheniy
 {
