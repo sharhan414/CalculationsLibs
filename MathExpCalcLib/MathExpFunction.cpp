@@ -24,25 +24,25 @@ double MathExpFunction::stdString_toDouble(string strValues)
 
 std::string MathExpFunction::SearchBeginText(string& mathExp,string::iterator& it,string::iterator& itBegin)
 {
-    auto k = it;
+    auto n_it = it;
     do {////////begin text
-        --k;
-        if (find(UserChars.begin(), UserChars.end(), *k) == UserChars.end())
+        --n_it;
+        if (find(UserChars.begin(), UserChars.end(), *n_it) == UserChars.end())
         {
-            string Textproc(k + 1, it);
-            itBegin = k + 1;
+            string Textproc(n_it + 1, it);
+            itBegin = n_it + 1;
             return Textproc;
 
         }
-        else if (k == mathExp.begin())
+        else if (n_it == mathExp.begin())
         {
-            string Textproc(k, it);
-            itBegin = k;
+            string Textproc(n_it, it);
+            itBegin = n_it;
             return Textproc;
 
         }
 
-    } while (k != mathExp.begin());
+    } while (n_it != mathExp.begin());
 }
 
 string MathExpFunction::SearchEndText(string & mathExp,string funk,string::iterator &it, string::iterator &itEnd)
