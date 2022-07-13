@@ -143,6 +143,7 @@ void MathExpressions::InsertNewSingExp(u16string &mathExp,u16string Sign, u16str
 void MathExpressions::ReplacingSigns(QString & text)//заменят знаки
 {
     auto str=text.toStdU16String();
+
     InsertNewSingExp(str,u"/√",u"nsqrt");
     InsertNewSingExp(str,u"×",u"*");
     InsertNewSingExp(str,u"÷",u"/");

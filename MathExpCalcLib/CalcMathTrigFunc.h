@@ -1,19 +1,28 @@
 #ifndef RESHTRIGFUNC_H
 #define RESHTRIGFUNC_H
-#include "resheniy.h"
+#include "MathExpFunction.h"
+/*
 
-class ReshTrigFunc:public Resheniy
+ReshTrigFunc- класс для вычисления тригонометрических фунций из математического выражения.
+
+
+
+
+
+
+
+  */
+class CalcMathTrigFunc:public MathExpFunction
 {
 public:
 
-    ReshTrigFunc();
+    CalcMathTrigFunc();
     void CalculateTrigFunc(std::string& mathExp);
     std::string resheniya(std::string&, std::string&);
 //СalcTrigonometricFunc
 private:
     double angleToRadians(double&);
     void trigonometr(std::string& mathExp);
-    const double Pi= 3.141592653589;
 };
 
 #endif // RESHTRIGFUNC_H

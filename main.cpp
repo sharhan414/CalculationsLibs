@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
 
-    QString str="asin(0.5)";
+    QString str="asin(0.5)+5×(8-13)";
     MathExpressions calc;
 
 cout<<"asin="<<std::asin(0.5)*(180/3.14159)<<std::endl;

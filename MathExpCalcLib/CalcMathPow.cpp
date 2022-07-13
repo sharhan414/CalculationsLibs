@@ -1,13 +1,13 @@
-#include "pow.h"
+#include "CalcMathPow.h"
 #include <iterator>
 
 using namespace std;
-Pow::Pow()
+CalcMathPow::CalcMathPow()
 {
 
 }
 
-string Pow::resheniya(string& StrBeginValue,string& StrEndValue)
+string CalcMathPow::resheniya(string& StrBeginValue,string& StrEndValue)
 {
 
     double DBeginValue=stdString_toDouble(StrBeginValue);//приобразем behinText в число
@@ -21,7 +21,7 @@ string Pow::resheniya(string& StrBeginValue,string& StrEndValue)
     return to_stdString(DOtvet);
 }
 
-void Pow::CalculatePow(string& mathExp)
+void CalcMathPow::CalculatePow(string& mathExp)
 {
     string pow = "^";
 

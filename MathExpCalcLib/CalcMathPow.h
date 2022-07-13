@@ -2,10 +2,10 @@
 #define POW_H
 #include "MathExpFunction.h"
 
-class Pow:public Resheniy
+class CalcMathPow:public MathExpFunction
 {
 public:
-    Pow();
+    CalcMathPow();
 
     void CalculatePow(std::string&);
 private:

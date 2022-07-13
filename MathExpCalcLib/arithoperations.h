@@ -12,7 +12,7 @@
 
  */
 
-class ArithOperations:public Resheniy
+class ArithOperations:public MathExpFunction
 {
 public:
     ArithOperations();

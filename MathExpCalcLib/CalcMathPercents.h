@@ -2,10 +2,10 @@
 #define CALCPERCENTS_H
 #include "MathExpFunction.h"
 
-class CalcPercents:public Resheniy
+class CalcMathPercents:public MathExpFunction
 {
 public:
-   CalcPercents();
+   CalcMathPercents();
     void CalculatePercent(std::string& text);
 private:
 

@@ -1,15 +1,14 @@
-#include "log.h"
+#include "CalcMathLog.h"
 #include <cmath>
 #include <vector>
 using namespace  std;
-Log::Log()
+CalcMathLog::CalcMathLog()
 {
 
 }
 
-void Log::CalculatehLog(string& mathExp)
+void CalcMathLog::CalculatehLog(string& mathExp)
 {
-
     vector<string> v{"ln","log"};
 
     for (vector<string>::size_type j = 0; j != v.size(); ++j)
@@ -29,9 +28,8 @@ void Log::CalculatehLog(string& mathExp)
     }
 }
 
-string Log::resheniya(string& Value,string& Func)
+string CalcMathLog::resheniya(string& Value,string& Func)
 {
-
 
    int value=int(stdString_toDouble(Value.c_str()));
     if(Error)

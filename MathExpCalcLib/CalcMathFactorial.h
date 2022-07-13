@@ -2,10 +2,10 @@
 #define FACTORIAL_H
 #include "MathExpFunction.h"
 
-class Factorial:public Resheniy
+class CalcMathFactorial:public MathExpFunction
 {
 public:
-    Factorial();
+    CalcMathFactorial();
      void CalculateFactorial(std::string&);
 private:
     std::string resheniya(std::string& );

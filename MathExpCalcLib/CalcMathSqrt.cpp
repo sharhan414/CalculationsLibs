@@ -1,18 +1,18 @@
-#include "sqrt.h"
+#include "CalcMathSqrt.h"
 
 using namespace std;
-Sqrt::Sqrt()
+CalcMathSqrt::CalcMathSqrt()
 {
 
 }
 
-void Sqrt::CalculateSqrt(string& mathExp)
+void CalcMathSqrt::CalculateSqrt(string& mathExp)
 {
     CalculateNSqtn(mathExp);
     Calculate2Sqrt(mathExp);
 }
 
-void Sqrt::CalculateNSqtn(string& mathExp){
+void CalcMathSqrt::CalculateNSqtn(string& mathExp){
     string nsqrn = "nsqrt";
 
     auto itBegin = mathExp.end(), itEnd = mathExp.end();
@@ -29,7 +29,7 @@ void Sqrt::CalculateNSqtn(string& mathExp){
         it = mathExp.insert(itBegin, otvet.begin(), otvet.end());
     }
 }
-void Sqrt::Calculate2Sqrt(string& mathExp)
+void CalcMathSqrt::Calculate2Sqrt(string& mathExp)
 {
     string Sqrt = "sqrt";
     auto it = search(mathExp.begin(), mathExp.end(), Sqrt.begin(), Sqrt.end());
@@ -44,14 +44,14 @@ void Sqrt::Calculate2Sqrt(string& mathExp)
         it = search(mathExp.begin(), mathExp.end(), Sqrt.begin(), Sqrt.end());
     }
 }
-string Sqrt::getMathSqrtAnswer(string& strValue)
+string CalcMathSqrt::getMathSqrtAnswer(string& strValue)
 {
     double Value=stdString_toDouble(strValue);
     double AnswerVal=sqrt(Value);
     return to_stdString(AnswerVal);
 }
 
-string Sqrt::resheniya(string& beginText, string& endText)
+string CalcMathSqrt::resheniya(string& beginText, string& endText)
 {
     if(beginText.empty())
     {

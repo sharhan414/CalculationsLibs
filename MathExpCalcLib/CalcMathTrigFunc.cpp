@@ -1,16 +1,16 @@
-#include "reshtrigfunc.h"
+#include "CalcMathTrigFunc.h"
 #include <vector>
 #include <cmath>
 #include <iostream>
-ReshTrigFunc::ReshTrigFunc()
+CalcMathTrigFunc::CalcMathTrigFunc()
 {
     Error=false;
 }
-void ReshTrigFunc::CalculateTrigFunc(std::string& text)
+void CalcMathTrigFunc::CalculateTrigFunc(std::string& text)
 {
     trigonometr(text);
 }
-std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
+std::string CalcMathTrigFunc::resheniya(std::string& Funk, std::string& Value)
 {   
     double DoubleVal=stdString_toDouble(Value),Answer=0;
 
@@ -34,14 +34,12 @@ std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
 
     if (Funk == "asin")
     {
-        std::cout<<"1 asin("<<DoubleVal<<")"<<std::endl;
         if(DoubleVal>1 || DoubleVal<-1)
         {
             Error=true;
             return std::string();
         }
-        std::cout<<"  asin("<<DoubleVal<<")"<<std::endl;
-        Answer=std::asin(DoubleVal)*(180/Math_Pi);
+        Answer=std::asin(DoubleVal)*(180/Math_Pi);    
     }
     else if (Funk == "acos")
     {
@@ -61,12 +59,12 @@ std::string ReshTrigFunc::resheniya(std::string& Funk, std::string& Value)
     return to_stdString(Answer);
 }
 
-double ReshTrigFunc::angleToRadians(double & x)
+double CalcMathTrigFunc::angleToRadians(double & x)
 {
-    return x/(180/Pi);
+    return x/(180/Math_Pi);
 }
 
-void ReshTrigFunc::trigonometr(std::string& mathExp)
+void CalcMathTrigFunc::trigonometr(std::string& mathExp)
 {
     std::vector<std::string> tr_funcs{"asin","acos","atag","sin","cos","tag"};
 

@@ -1,19 +1,19 @@
-#include "resheniy.h"
+#include "MathExpFunction.h"
 #include <QString>
 #include <iostream>
 using namespace std;
-Resheniy::Resheniy()
+MathExpFunction::MathExpFunction()
 {
-Error=false;
+    Error=false;
 }
 
-string Resheniy::to_stdString(double values)
+string MathExpFunction::to_stdString(double values)
 {
 
     return QString::number(values).toStdString();
 }
 
-double Resheniy::stdString_toDouble(string strValues)
+double MathExpFunction::stdString_toDouble(string strValues)
 {
 
     QString QStrVal=QString::fromStdString(strValues);
@@ -22,7 +22,7 @@ double Resheniy::stdString_toDouble(string strValues)
     return answer;
 }
 
-std::string Resheniy::SearchBeginText(string& mathExp,string::iterator& it,string::iterator& itBegin)
+std::string MathExpFunction::SearchBeginText(string& mathExp,string::iterator& it,string::iterator& itBegin)
 {
     auto k = it;
     do {////////begin text
@@ -45,7 +45,7 @@ std::string Resheniy::SearchBeginText(string& mathExp,string::iterator& it,strin
     } while (k != mathExp.begin());
 }
 
-string Resheniy::SearchEndText(string & mathExp,string funk,string::iterator &it, string::iterator &itEnd)
+string MathExpFunction::SearchEndText(string & mathExp,string funk,string::iterator &it, string::iterator &itEnd)
 {
 
     for (auto i = it + int(funk.size()); i != mathExp.end(); ++i)
@@ -71,7 +71,7 @@ string Resheniy::SearchEndText(string & mathExp,string funk,string::iterator &it
 
 
 template<class MathExp>
-void Resheniy::replMathExp(MathExp &mathExp, MathExp Sign,MathExp newSign)
+void MathExpFunction::replMathExp(MathExp &mathExp, MathExp Sign,MathExp newSign)
 {
 
     auto iter=mathExp.begin();

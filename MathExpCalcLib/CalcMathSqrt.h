@@ -2,10 +2,10 @@
 #define SQRT_H
 #include "MathExpFunction.h"
 
-class Sqrt:public Resheniy
+class CalcMathSqrt:public MathExpFunction
 {
 public:
-    Sqrt();
+    CalcMathSqrt();
     void CalculateSqrt(std::string&);
     void CalculateNSqtn(std::string&);
     void Calculate2Sqrt(std::string&);
@@ -21,8 +21,7 @@ public:
             Error=true;
             return 0;
         }
-        double otvet = pow(x, 1/y);
-        return otvet;
+        return pow(x, 1/y);
     }
     double sqrt(double x)
     {

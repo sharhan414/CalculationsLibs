@@ -1,10 +1,10 @@
-#include "factorial.h"
+#include "CalcMathFactorial.h"
 using namespace std;
-Factorial::Factorial()
+CalcMathFactorial::CalcMathFactorial()
 {
 
 }
-void Factorial::CalculateFactorial(string& mathExp)
+void CalcMathFactorial::CalculateFactorial(string& mathExp)
 {
     string factorials = "!";
     auto itBegin = mathExp.end();
@@ -18,7 +18,7 @@ void Factorial::CalculateFactorial(string& mathExp)
         it = mathExp.insert(itBegin, otvet.begin(), otvet.end());
     }
 }
-string Factorial::resheniya(string& Znachenie)
+string CalcMathFactorial::resheniya(string& Znachenie)
 {    
     int value= atoi(Znachenie.c_str());//QStrText.toInt(&error);
     int fact=factorial(value);

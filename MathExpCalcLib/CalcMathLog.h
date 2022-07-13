@@ -2,10 +2,10 @@
 #define LOG_H
 #include "MathExpFunction.h"
 
-class Log:public Resheniy
+class CalcMathLog:public MathExpFunction
 {
 public:
-    Log();
+    CalcMathLog();
 
 void CalculatehLog(std::string& mathExp);
 private:

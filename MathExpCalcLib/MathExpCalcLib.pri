@@ -1,22 +1,22 @@
 
 SOURCES += \
+    $$PWD/CalcMathFactorial.cpp \
+    $$PWD/CalcMathLog.cpp \
+    $$PWD/CalcMathPercents.cpp \
+    $$PWD/CalcMathPow.cpp \
+    $$PWD/CalcMathSqrt.cpp \
+    $$PWD/CalcMathTrigFunc.cpp \
     $$PWD/MathExpFunction.cpp \
         $$PWD/arithoperations.cpp \
-        $$PWD/calcpercents.cpp \
-        $$PWD/factorial.cpp \
-        $$PWD/log.cpp \
         $$PWD/mathexpressions.cpp \
-        $$PWD/pow.cpp \
-        $$PWD/reshtrigfunc.cpp \
-        $$PWD/sqrt.cpp\
 
 HEADERS += \
+    $$PWD/CalcMathFactorial.h \
+    $$PWD/CalcMathLog.h \
+    $$PWD/CalcMathPercents.h \
+    $$PWD/CalcMathPow.h \
+    $$PWD/CalcMathSqrt.h \
+    $$PWD/CalcMathTrigFunc.h \
     $$PWD/MathExpFunction.h \
     $$PWD/arithoperations.h \
-    $$PWD/calcpercents.h \
-    $$PWD/factorial.h \
-    $$PWD/log.h \
-    $$PWD/mathexpressions.h \
-    $$PWD/pow.h \
-    $$PWD/reshtrigfunc.h \
-    $$PWD/sqrt.h
+    $$PWD/mathexpressions.h

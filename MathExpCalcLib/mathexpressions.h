@@ -3,14 +3,14 @@
 
 #include <string>
 #include <iterator>
-#include "reshtrigfunc.h"
+#include "CalcMathTrigFunc.h"
 #include "arithoperations.h"
-#include "log.h"
-#include "factorial.h"
-#include "sqrt.h"
-#include "pow.h"
+#include "CalcMathLog.h"
+#include "CalcMathFactorial.h"
+#include "CalcMathSqrt.h"
+#include "CalcMathPow.h"
 #include <QString>
-#include "calcpercents.h"
+#include "CalcMathPercents.h"
 class MathExpressions
 {
 public:
@@ -25,13 +25,13 @@ private:
     static void InsertNewSingExp(std::u16string& mathExp,std::u16string Sign,std::u16string newSign);
 
 private:
-    ReshTrigFunc calcTrigFunc;
-    CalcPercents calcPercent;
+    CalcMathTrigFunc calcTrigFunc;
+    CalcMathPercents calcPercent;
     ArithOperations arithAct;
-    Log log;
-    Factorial factorial;
-    Sqrt qsrt;
-    Pow pow;
+    CalcMathLog log;
+    CalcMathFactorial factorial;
+    CalcMathSqrt qsrt;
+    CalcMathPow pow;
 
 };
 

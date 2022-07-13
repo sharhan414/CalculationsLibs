@@ -1,27 +1,27 @@
-#include "calcpercents.h"
+#include "CalcMathPercents.h"
 #include <iostream>
 using namespace std;
-CalcPercents::CalcPercents()
+CalcMathPercents::CalcMathPercents()
 {
 
 }
 
 
-string CalcPercents::getOnePercent(string& strValue)
+string CalcMathPercents::getOnePercent(string& strValue)
 {
 
     double x=stdString_toDouble(strValue) ;//  text.toDouble(&error);
     x=Percent(x);
     return to_stdString(x);
 }
-double CalcPercents::PlusPercens(double Value, double Percents)
+double CalcMathPercents::PlusPercens(double Value, double Percents)
 {
     Percents /= 100;
     Percents += 1;
     Value *= Percents;
     return Value;
 }
-double CalcPercents::MinusPercens(double Value, double Percents)
+double CalcMathPercents::MinusPercens(double Value, double Percents)
 {
     Percents /= 100;
     Percents = 1 - Percents;
@@ -29,12 +29,12 @@ double CalcPercents::MinusPercens(double Value, double Percents)
     return Value;
 }
 
-double CalcPercents::Percent(double x)
+double CalcMathPercents::Percent(double x)
 {
     return x/100;
 }
 
-void CalcPercents::CalcPercentsFroExp(string &mathExp,string percentType)
+void CalcMathPercents::CalcPercentsFroExp(string &mathExp,string percentType)
 {
 
     auto itBegin = mathExp.end(), itEnd = mathExp.end();
@@ -63,7 +63,7 @@ void CalcPercents::CalcPercentsFroExp(string &mathExp,string percentType)
     }
 }
 
-string CalcPercents::CalcPercentsByValues(string& strValue, string& strPercents, string& Func)
+string CalcMathPercents::CalcPercentsByValues(string& strValue, string& strPercents, string& Func)
 {
     double Value=stdString_toDouble(strValue) ;//BeginZnach.toDouble(&error);
     double Percents=stdString_toDouble(strPercents) ;
@@ -83,7 +83,7 @@ string CalcPercents::CalcPercentsByValues(string& strValue, string& strPercents,
     return  to_stdString(Answer);
 }
 
-void CalcPercents::CalculatePercent(string& mathExp)
+void CalcMathPercents::CalculatePercent(string& mathExp)
 {
     CalcPercentsFroExp(mathExp,"+%");
     CalcPercentsFroExp(mathExp,"-%");

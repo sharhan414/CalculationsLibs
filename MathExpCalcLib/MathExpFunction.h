@@ -7,23 +7,24 @@
 #include <cmath>
 #include <iterator>
 
-class Resheniy
+class MathExpFunction
 {
 public:
     enum class CalcFuncError
     {
-    delNull,arcTrihFunc,notNatNumFactorial
+        delNull,arcTrihFunc,notNatNumFactorial
     };
-    Resheniy();
+    MathExpFunction();
     bool isError()
     {
         return Error;
     }
-    const  double Math_Pi=3.141592654;
+    static constexpr  double Math_Pi=3.141592654;
     static std::string to_stdString(double);
     double stdString_toDouble(std::string strValues);
-    template<class Str>
-    void InsertNewSingExp(Str &mathExp,Str Sign, Str newSign);
+
+    template<class MathExp>
+    static void replMathExp(MathExp &mathExp,MathExp Sign, MathExp newSign);//заменяет текст Sign из mathExp на newSign
 
 protected:
     std::string SearchBeginText(std::string&,std::string::iterator&,std::string::iterator&) ;
