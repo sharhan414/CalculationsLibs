@@ -18,7 +18,7 @@ public:
     {
         if( y == 0.0 || (x<0 && abs(y)-abs(int(y))==0 && abs(int(y))%2==0))
         {
-            Error=true;
+            m_Error=true;
             return 0;
         }
         return pow(x, 1/y);
@@ -27,11 +27,14 @@ public:
     {
         if(x<0)
         {
-            Error=true;
+            m_Error=true;
             return 0;
         }
         return pow(x, 0.5);
     }
+private:
+    std::string m_nSqrt = "nsqrt";
+    std::string m_Sqrt = "sqrt";
 };
 
 #endif // SQRT_H

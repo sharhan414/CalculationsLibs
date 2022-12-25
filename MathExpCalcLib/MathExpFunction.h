@@ -10,14 +10,14 @@
 class MathExpFunction
 {
 public:
-    enum class CalcFuncError
+    enum class ErrorsType//перечисление для обазначения типов ошибок
     {
-        delNull,arcTrihFunc,notNatNumFactorial
+        DivZero,arcTrihFunc,notNatNumFactorial
     };
     MathExpFunction();
     bool isError()
     {
-        return Error;
+        return m_Error;
     }
     static constexpr  double Math_Pi=3.141592654;
     static std::string to_stdString(double);
@@ -27,9 +27,11 @@ public:
     static void replMathExp(MathExp &mathExp,MathExp Sign, MathExp newSign);//заменяет текст Sign из mathExp на newSign
 
 protected:
+    //SearchBeginText - функция для нахождения числа находящей впереди указанной позиции,
     std::string SearchBeginText(std::string&,std::string::iterator&,std::string::iterator&) ;
+    //SearchEndText - функция для нахождения числа находящей позади указанной позиции,
     std::string SearchEndText(std::string&,std::string,std::string::iterator&,std::string::iterator&) ;
-    bool Error=false;
+    bool m_Error=false;
     const std::string UserChars = "0123456789.";
 
 };

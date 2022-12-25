@@ -4,21 +4,21 @@
 using namespace std;
 MathExpFunction::MathExpFunction()
 {
-    Error=false;
+    m_Error=false;
+
 }
 
 string MathExpFunction::to_stdString(double values)
 {
-
-    return QString::number(values).toStdString();
+    return QString::number(values,'f',15).toStdString();
 }
 
 double MathExpFunction::stdString_toDouble(string strValues)
 {
 
     QString QStrVal=QString::fromStdString(strValues);
-    auto answer=QStrVal.toDouble(&Error);
-    Error= !Error;
+    auto answer=QStrVal.toDouble(&m_Error);
+    m_Error= !m_Error;
     return answer;
 }
 
@@ -47,24 +47,26 @@ std::string MathExpFunction::SearchBeginText(string& mathExp,string::iterator& i
 
 string MathExpFunction::SearchEndText(string & mathExp,string funk,string::iterator &it, string::iterator &itEnd)
 {
-
+    cout<<"mathExp:"<<mathExp<<endl;
     for (auto i = it + int(funk.size()); i != mathExp.end(); ++i)
     {
-        if(*(it+ int(funk.size()))=='-')//если после фун-и стоить знак -, то его включаем а значение
+        if(*(i)=='-')//если после фун-и стоить знак -, то его включаем а значение
         {
              i++;
         }
         if (find(UserChars.begin(), UserChars.end(), *i) == UserChars.end())
         {
-            string Textproc(it + int64_t(funk.size()), i);
+            string value(it + int64_t(funk.size()), i);
             itEnd = i;
-            return Textproc;
+            cout<<"Textproc:"<<value<<endl;
+            return value;
         }
         else if (i == mathExp.end() - 1)
         {
-            string Textproc(it + int64_t(funk.size()), i + 1);
+            string value(it + int64_t(funk.size()), i + 1);
             itEnd = i + 1;
-            return Textproc;
+            cout<<"value:"<<value<<endl;
+            return value;
         }
     }
 }
@@ -86,4 +88,5 @@ void MathExpFunction::replMathExp(MathExp &mathExp, MathExp Sign,MathExp newSign
         iter=mathExp.erase(iter,iter+Sign.size());
         iter=mathExp.insert(iter,newSign.begin(),newSign.end());
     }
+
 }

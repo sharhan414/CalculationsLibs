@@ -67,7 +67,7 @@ string CalcMathPercents::CalcPercentsByValues(string& strValue, string& strPerce
 {
     double Value=stdString_toDouble(strValue) ;//BeginZnach.toDouble(&error);
     double Percents=stdString_toDouble(strPercents) ;
-    if(!Error)
+    if(!m_Error)
     {
         return string();
     }

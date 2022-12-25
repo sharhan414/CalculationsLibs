@@ -11,6 +11,22 @@ MathExpressions::MathExpressions()
 void MathExpressions::CalculateMathExp(string & mathExp)
 {
     string::iterator b=mathExp.begin(),e=mathExp.end(),e2=mathExp.end();
+    int32_t opens=0,closes=0;
+    for(auto it:mathExp)
+    {
+        if(it=='(')
+        {
+            opens++;
+        }
+        if(it==')')
+        {
+            closes++;
+        }
+    }
+    if(opens!=closes)
+    {
+        return ;
+    }
     OpeningBrackets(mathExp,b,e,e2);
 }
 
@@ -19,6 +35,7 @@ string MathExpressions::ApplicationFuncCalc(string mathExp)
 
     factorial.CalculateFactorial(mathExp);//вычисляет фактириалы
     calcTrigFunc.CalculateTrigFunc(mathExp);//вычисляет тригонометрических функций
+
     if(calcTrigFunc.isError())//проверка на наличие ошибки при произведения действия
     {
         qDebug()<<"v trig error";
@@ -29,8 +46,9 @@ string MathExpressions::ApplicationFuncCalc(string mathExp)
     log.CalculatehLog(mathExp);//вычисляет логарифм
     qsrt.CalculateSqrt(mathExp);//вычисляет корней
     pow.CalculatePow(mathExp);//вычисляет спепеней
+    qDebug()<<"1mathExp:"<<QString(mathExp.c_str());
     double answer=arithAct.calcArithExp(mathExp);
-
+    qDebug()<<"answer:"<<answer;
     return QString::number(answer).toStdString();
 }
 
@@ -48,36 +66,36 @@ void MathExpressions::OpeningBrackets(string& mathExp, string::iterator& begin, 
     if(!getTextFromBrackets(mathExp, begin, end, verhEnd ))
         return;
     int bracket_close = 0, bracket_open = 0;//переменные для подсчёта открых и закрытых скобок
-    auto c = mathExp.end();
-    auto i = begin;
+    auto it_exp_last = mathExp.end();
+    auto it_begin_last = begin;
 
-    while (i != end)
+    while (it_begin_last != end)
     {
 
-        if (*i == '(')
+        if (*it_begin_last == '(')
         {           //подсчитывает количество открытых скобок
             ++bracket_open;
-            if (c == mathExp.end())
-                c = i;                  //сохраняет позицию первой открытой скобки
+            if (it_exp_last == mathExp.end())
+                it_exp_last = it_begin_last;                  //сохраняет позицию первой открытой скобки
         }
-        else if (*i == ')')
+        else if (*it_begin_last == ')')
         {      //подсчитывает количество закрытых скобок
             ++bracket_close;
         }
         if (bracket_close != 0 && bracket_open == bracket_close)
         {        //если количество окрытых и закрытых скобок равно, то
             int64_t ras1 = int64_t(mathExp.size());
-            OpeningBrackets(mathExp, ++c, i,end);
+            OpeningBrackets(mathExp, ++it_exp_last, it_begin_last,end);
             int64_t ras2 = int64_t(mathExp.size());     //
             int64_t ras =  ras1-ras2;
             verhEnd -= ras;
             if (!getTextFromBrackets(mathExp, begin,end, verhEnd))
                 return;		//закрываем нашу функцию
-            c = mathExp.end();
+            it_exp_last = mathExp.end();
             bracket_close = 0;
             bracket_open = 0;
         }
-        ++i;//увеличиваем счетшик на 1
+        ++it_begin_last;//увеличиваем счетшик на 1
     }
 }
 bool  MathExpressions::getTextFromBrackets(string& mathExp, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
@@ -140,13 +158,14 @@ void MathExpressions::InsertNewSingExp(u16string &mathExp,u16string Sign, u16str
     }
 }
 
-void MathExpressions::ReplacingSigns(QString & text)//заменят знаки
+void MathExpressions::ReplacingSigns(QString & mathExp)//заменят знаки
 {
-    auto str=text.toStdU16String();
+    auto str=mathExp.toStdU16String();
 
     InsertNewSingExp(str,u"/√",u"nsqrt");
     InsertNewSingExp(str,u"×",u"*");
     InsertNewSingExp(str,u"÷",u"/");
     InsertNewSingExp(str,u"√",u"sqrt");
-    text=text.fromStdU16String(str);
+    mathExp=mathExp.fromStdU16String(str);
+
 }

@@ -47,6 +47,11 @@ void ArithOperations::CalcArithExpMultAndDiv(vector<double>& Values, vector<char
             }
             else if (ArithmeticSigns[i] ==m.back())
             {
+                if(Values[i + 1] == 0)
+                {
+                    m_Error=true;
+                    return;
+                }
                 Values[i] = Values[i]/Values[i + 1];
                 Values.erase(Values.begin() + i + size_t(1));
                 ArithmeticSigns.erase(ArithmeticSigns.begin() + i);
@@ -123,22 +128,22 @@ void ArithOperations::getArifSignsForExp(string &mathExp,vector<char>& Arithmeti
     }
 }
 
-void ArithOperations::getValuesForExp(string &text,vector<string>& ValuesForExp)
+void ArithOperations::getValuesForExp(string &mathExp,vector<string>& ValuesForExp)
 {
-    while(!text.empty())
+    while(!mathExp.empty())
     {
-        auto iter=find(text.begin(),text.end(),'|');
-        string val(text.begin(),iter);
+        auto iter=find(mathExp.begin(),mathExp.end(),'|');
+        string val(mathExp.begin(),iter);
         ValuesForExp.push_back(val);
-        text.erase(text.begin(),iter+1);
+        mathExp.erase(mathExp.begin(),iter+1);
     }
 }
 
-void ArithOperations::getDatesForExp(string& text,vector<string>& ValuesForExp,vector<char>& ArithmeticSigns)
+void ArithOperations::getDatesForExp(string& mathExp,vector<string>& ValuesForExp,vector<char>& ArithmeticSigns)
 {
 
-    getArifSignsForExp(text,ArithmeticSigns);
-    getValuesForExp(text,ValuesForExp);
+    getArifSignsForExp(mathExp,ArithmeticSigns);
+    getValuesForExp(mathExp,ValuesForExp);
 }
 
 
