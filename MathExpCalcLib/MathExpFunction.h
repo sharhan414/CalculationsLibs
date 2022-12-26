@@ -15,6 +15,8 @@ public:
         DivZero,arcTrihFunc,notNatNumFactorial
     };
     MathExpFunction();
+    virtual bool calculate(std::string& mathExp)=0;//функция для произведения вычисления, возврашает false при ошибке в противном случае true
+
     bool isError()
     {
         return m_Error;

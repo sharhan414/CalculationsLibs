@@ -2,6 +2,13 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
+
+bool CalcMathTrigFunc::calculate(std::string &mathExp)
+{
+    CalculateTrigFunc(mathExp);
+    return !isError();
+}
+
 CalcMathTrigFunc::CalcMathTrigFunc()
 {
     m_Error=false;

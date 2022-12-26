@@ -6,16 +6,12 @@ class CalcMathFactorial:public MathExpFunction
 {
 public:
     CalcMathFactorial();
-     void CalculateFactorial(std::string&);
+    virtual ~CalcMathFactorial(){}
+    bool calculate(std::string& mathExp) override;
 private:
+    void CalculateFactorial(std::string&);
     std::string resheniya(std::string& );
-    int factorial(int n)
-    {
-        if (n == 0)
-            return 1;
-        else
-            return n * factorial(n - 1);
-    }
+    int factorial(int n);
 };
 
 #endif // FACTORIAL_H

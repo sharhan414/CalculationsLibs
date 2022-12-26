@@ -6,12 +6,14 @@ class CalcMathLog:public MathExpFunction
 {
 public:
     CalcMathLog();
-
-void CalculatehLog(std::string& mathExp);
+    virtual ~CalcMathLog(){}
+    void CalculatehLog(std::string& mathExp);
+    bool calculate(std::string& mathExp) override;
 private:
     std::string resheniya(std::string&,std::string&);
-    std::string m_fLog="log";
-    std::string m_fLn="ln";
+
+    std::string m_fLog="log";//обозначение логарифма
+    std::string m_fLn="ln";//обозначение логарифма
 };
 
 #endif // LOG_H

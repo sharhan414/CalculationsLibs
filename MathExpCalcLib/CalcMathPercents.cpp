@@ -1,13 +1,17 @@
 #include "CalcMathPercents.h"
 #include <iostream>
-using namespace std;
+//using namespace std;
 CalcMathPercents::CalcMathPercents()
 {
 
 }
+bool CalcMathPercents::calculate(std::string &mathExp)
+{
+    CalculatePercent(mathExp);
+    return !isError();
+}
 
-
-string CalcMathPercents::getOnePercent(string& strValue)
+std::string CalcMathPercents::getOnePercent(std::string& strValue)
 {
 
     double x=stdString_toDouble(strValue) ;//  text.toDouble(&error);
@@ -34,21 +38,21 @@ double CalcMathPercents::Percent(double x)
     return x/100;
 }
 
-void CalcMathPercents::CalcPercentsFroExp(string &mathExp,string percentType)
+void CalcMathPercents::CalcPercentsFroExp(std::string &mathExp, std::string percentType)
 {
 
     auto itBegin = mathExp.end(), itEnd = mathExp.end();
     auto it = mathExp.begin();
 
-    while ((it = search(it, mathExp.end(), percentType.begin(), percentType.end())) != mathExp.end())
+    while ((it = std::search(it, mathExp.end(), percentType.begin(), percentType.end())) != mathExp.end())
     {
-        string beginStrValue, endStrValue;
+        std::string beginStrValue, endStrValue;
 
         beginStrValue=SearchBeginText(mathExp,it,itBegin); //begin text
 
-        if(percentType=="%")
+        if(percentType==m_oneProcent)
         {
-            string otvet = getOnePercent(beginStrValue);
+            std::string otvet = getOnePercent(beginStrValue);
             mathExp.erase(itBegin, it+1);
             it = mathExp.insert(itBegin, otvet.begin(), otvet.end());
             continue;
@@ -56,36 +60,38 @@ void CalcMathPercents::CalcPercentsFroExp(string &mathExp,string percentType)
 
         endStrValue=SearchEndText(mathExp,percentType,it,itEnd);  //end text
 
-        string strAnswer = CalcPercentsByValues(beginStrValue, endStrValue, percentType);
+        std::string strAnswer = CalcPercentsByValues(beginStrValue, endStrValue, percentType);
         mathExp.erase(itBegin, itEnd);
         it = mathExp.insert(itBegin, strAnswer.begin(), strAnswer.end());
 
     }
 }
 
-string CalcMathPercents::CalcPercentsByValues(string& strValue, string& strPercents, string& Func)
+std::string CalcMathPercents::CalcPercentsByValues(std::string& strValue, std::string& strPercents, std::string& Func)
 {
     double Value=stdString_toDouble(strValue) ;//BeginZnach.toDouble(&error);
     double Percents=stdString_toDouble(strPercents) ;
     if(!m_Error)
     {
-        return string();
+        return std::string();
     }
     double Answer=0;
-    if(Func=="+%")
+    if(Func==m_incProcent)
     {
         Answer= PlusPercens(Value,Percents);
     }
-    if(Func == string("-%"))
+    if(Func == m_redProcent)
     {
         Answer= MinusPercens(Value,Percents);
     }
     return  to_stdString(Answer);
 }
 
-void CalcMathPercents::CalculatePercent(string& mathExp)
+void CalcMathPercents::CalculatePercent(std::string& mathExp)
 {
-    CalcPercentsFroExp(mathExp,"+%");
-    CalcPercentsFroExp(mathExp,"-%");
-    CalcPercentsFroExp(mathExp,"%");
+    CalcPercentsFroExp(mathExp,m_incProcent);
+    CalcPercentsFroExp(mathExp,m_redProcent);
+    CalcPercentsFroExp(mathExp,m_oneProcent);
 }
+
+

@@ -1,19 +1,19 @@
 #include "MathExpFunction.h"
 #include <QString>
 #include <iostream>
-using namespace std;
+//using namespace std;
 MathExpFunction::MathExpFunction()
 {
     m_Error=false;
 
 }
 
-string MathExpFunction::to_stdString(double values)
+std::string MathExpFunction::to_stdString(double values)
 {
     return QString::number(values,'f',15).toStdString();
 }
 
-double MathExpFunction::stdString_toDouble(string strValues)
+double MathExpFunction::stdString_toDouble(std::string strValues)
 {
 
     QString QStrVal=QString::fromStdString(strValues);
@@ -22,21 +22,21 @@ double MathExpFunction::stdString_toDouble(string strValues)
     return answer;
 }
 
-std::string MathExpFunction::SearchBeginText(string& mathExp,string::iterator& it,string::iterator& itBegin)
+std::string MathExpFunction::SearchBeginText(std::string& mathExp,std::string::iterator& it,std::string::iterator& itBegin)
 {
     auto n_it = it;
     do {////////begin text
         --n_it;
         if (find(UserChars.begin(), UserChars.end(), *n_it) == UserChars.end())
         {
-            string Textproc(n_it + 1, it);
+            std::string Textproc(n_it + 1, it);
             itBegin = n_it + 1;
             return Textproc;
 
         }
         else if (n_it == mathExp.begin())
         {
-            string Textproc(n_it, it);
+            std::string Textproc(n_it, it);
             itBegin = n_it;
             return Textproc;
 
@@ -45,9 +45,9 @@ std::string MathExpFunction::SearchBeginText(string& mathExp,string::iterator& i
     } while (n_it != mathExp.begin());
 }
 
-string MathExpFunction::SearchEndText(string & mathExp,string funk,string::iterator &it, string::iterator &itEnd)
+std::string MathExpFunction::SearchEndText(std::string & mathExp, std::string funk, std::string::iterator &it,std::string::iterator &itEnd)
 {
-    cout<<"mathExp:"<<mathExp<<endl;
+
     for (auto i = it + int(funk.size()); i != mathExp.end(); ++i)
     {
         if(*(i)=='-')//если после фун-и стоить знак -, то его включаем а значение
@@ -56,16 +56,14 @@ string MathExpFunction::SearchEndText(string & mathExp,string funk,string::itera
         }
         if (find(UserChars.begin(), UserChars.end(), *i) == UserChars.end())
         {
-            string value(it + int64_t(funk.size()), i);
+            std::string value(it + int64_t(funk.size()), i);
             itEnd = i;
-            cout<<"Textproc:"<<value<<endl;
             return value;
         }
         else if (i == mathExp.end() - 1)
         {
-            string value(it + int64_t(funk.size()), i + 1);
+            std::string value(it + int64_t(funk.size()), i + 1);
             itEnd = i + 1;
-            cout<<"value:"<<value<<endl;
             return value;
         }
     }

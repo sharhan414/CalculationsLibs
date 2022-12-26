@@ -6,8 +6,10 @@
 //using namespace std;
 ArithOperations::ArithOperations()
 {
-
+    
 }
+
+
 double ArithOperations::calcArithExp(std::string mathExp)
 {
     std::vector<char> ArithmeticSigns;

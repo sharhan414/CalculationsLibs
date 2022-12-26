@@ -11,7 +11,6 @@ int main()
     cout.precision(17);
 //1,1857777*10-6
     QString str="(6.67*10^-11*80000*45000)/450^2";
-    //QString str="5*1*10^-3+1";
 
     cout<<(6.67*std::pow(10,-11)*80000*45000)/(std::pow(450,2))<<endl;
     //QString str="(1.3473*6.4356)";

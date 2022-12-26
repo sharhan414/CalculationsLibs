@@ -2,15 +2,15 @@
 #include <iterator>
 #include <algorithm>
 #include<QDebug>
-using namespace std;
+//using namespace std;
 MathExpressions::MathExpressions()
 {
 
 }
 
-void MathExpressions::CalculateMathExp(string & mathExp)
+void MathExpressions::CalculateMathExp(std::string & mathExp)
 {
-    string::iterator b=mathExp.begin(),e=mathExp.end(),e2=mathExp.end();
+    std::string::iterator b=mathExp.begin(),e=mathExp.end(),e2=mathExp.end();
     int32_t opens=0,closes=0;
     for(auto it:mathExp)
     {
@@ -30,25 +30,24 @@ void MathExpressions::CalculateMathExp(string & mathExp)
     OpeningBrackets(mathExp,b,e,e2);
 }
 
-string MathExpressions::ApplicationFuncCalc(string mathExp)
+std::string MathExpressions::ApplicationFuncCalc(std::string mathExp)
 {
 
-    factorial.CalculateFactorial(mathExp);//вычисляет фактириалы
-    calcTrigFunc.CalculateTrigFunc(mathExp);//вычисляет тригонометрических функций
+    factorial.calculate(mathExp);//вычисляет фактириалы
+    calcTrigFunc.calculate(mathExp);//вычисляет тригонометрических функций
 
     if(calcTrigFunc.isError())//проверка на наличие ошибки при произведения действия
     {
         qDebug()<<"v trig error";
     }
 
-    calcPercent.CalculatePercent(mathExp);//вычисляет процент
+    calcPercent.calculate(mathExp);//вычисляет процент
 
-    log.CalculatehLog(mathExp);//вычисляет логарифм
-    qsrt.CalculateSqrt(mathExp);//вычисляет корней
-    pow.CalculatePow(mathExp);//вычисляет спепеней
-    qDebug()<<"1mathExp:"<<QString(mathExp.c_str());
+    log.calculate(mathExp);//вычисляет логарифм
+    qsrt.calculate(mathExp);//вычисляет корней
+    pow.calculate(mathExp);//вычисляет спепеней
+
     double answer=arithAct.calcArithExp(mathExp);
-    qDebug()<<"answer:"<<answer;
     return QString::number(answer).toStdString();
 }
 
@@ -59,7 +58,7 @@ string MathExpressions::ApplicationFuncCalc(string mathExp)
 /// \param end
 /// \param verhEnd
 /////////////////////////////////////////////////////
-void MathExpressions::OpeningBrackets(string& mathExp, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
+void MathExpressions::OpeningBrackets(std::string& mathExp, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd)
 {
 //функция для раскрытия скобок
 
@@ -98,15 +97,15 @@ void MathExpressions::OpeningBrackets(string& mathExp, string::iterator& begin, 
         ++it_begin_last;//увеличиваем счетшик на 1
     }
 }
-bool  MathExpressions::getTextFromBrackets(string& mathExp, string::iterator& begin, string::iterator& end, string::iterator& verhEnd)
+bool  MathExpressions::getTextFromBrackets(std::string& mathExp, std::string::iterator& begin, std::string::iterator& end, std::string::iterator& verhEnd)
 {
 
-    string textskobky(begin, end);//вычисляется текст нашей скобки
+    std::string textskobky(begin, end);//вычисляется текст нашей скобки
     int64_t sizeIshodText = int64_t(mathExp.size());
 
-    if (find(textskobky.begin(), textskobky.end(), '(') == textskobky.end() && !textskobky.empty()) //если в нашем тексте нету скобок то
+    if (std::find(textskobky.begin(), textskobky.end(), '(') == textskobky.end() && !textskobky.empty()) //если в нашем тексте нету скобок то
     {
-        string ansewr = ApplicationFuncCalc(textskobky);//вычисляем ответ арифметических действий в нашем тексте и ответ сохраняем в переменной "otvet"
+        std::string ansewr = ApplicationFuncCalc(textskobky);//вычисляем ответ арифметических действий в нашем тексте и ответ сохраняем в переменной "otvet"
 
         if (begin == mathExp.begin() && end==mathExp.end())
         {//
@@ -142,13 +141,13 @@ bool  MathExpressions::getTextFromBrackets(string& mathExp, string::iterator& be
         return true;
 }
 
-void MathExpressions::InsertNewSingExp(u16string &mathExp,u16string Sign, u16string newSign)
+void MathExpressions::InsertNewSingExp(std::u16string &mathExp,std::u16string Sign, std::u16string newSign)
 {
     auto iter=mathExp.begin();
     while(iter!=mathExp.end())
     {
 
-        iter=search(iter,mathExp.end(),Sign.begin(),Sign.end());
+        iter=std::search(iter,mathExp.end(),Sign.begin(),Sign.end());
         if(iter==mathExp.end())
         {
             break;
